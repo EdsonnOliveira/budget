@@ -1,14 +1,14 @@
 import React from "react";
 import Text from "../text";
 
-import { GhostSmall, Image, MarkerShadow, HexagonGradientMedium, GhostSolidSmall, HexagonGradientLarge, BoxCenteredText, HexagonPrimaryMedium, HexagonGhostSolidMedium, MarkerBottom } from "./style";
+import { GhostSmall, Image, MarkerShadow, HexagonGradientMedium, GhostSolidSmall, HexagonGradientLarge, BoxCenteredText, HexagonPrimaryMedium, HexagonGhostSolidMedium, MarkerBottom, BottomSheet, PrimaryMedium, PrimaryLarge } from "./style";
 
 import HexagonPrimaryMediumImage from '../../../assets/vectors/hexagonPrimaryMedium.png'
 import HexagonGradientMediumImage from '../../../assets/vectors/hexagonGradientMedium.png'
 import HexagonGradientLargeImage from '../../../assets/vectors/hexagonGradientLarge.png'
 import HexagonGhostSolidMediumImage from '../../../assets/vectors/hexagonGhostSolidMedium.png'
 import IndexProps from "./models";
-import { white } from "../../constants/colors";
+import { black, white } from "../../constants/colors";
 import Tag from "../tag";
 
 const Button: React.FC<IndexProps> = ({
@@ -20,12 +20,28 @@ const Button: React.FC<IndexProps> = ({
     tag,
     flex,
     sizeIcon,
+    disabled,
     mt,
     ml,
     mr,
     mb
 }) => {
     switch (type) {
+        case 'primaryLarge':
+            return (
+                <PrimaryLarge
+                    onPress={onPress}
+                    mt={mt} ml={ml} mr={mr} mb={mb}
+                    disabled={disabled}
+                >
+                    <Text
+                        text={text.toString()}
+                        type='H5'
+                        align='center'
+                        color={disabled ? black : white}
+                    />
+                </PrimaryLarge>
+            )
         case 'hexagonPrimaryMedium':
             return (
                 <HexagonPrimaryMedium onPress={onPress} mt={mt} ml={ml} mr={mr} mb={mb}>
@@ -103,6 +119,12 @@ const Button: React.FC<IndexProps> = ({
                     <Image source={icon} sizeIcon={{...sizeIcon}} style={{ resizeMode: 'contain' }} />
                     <Text text={text.toString()} type='H4' color={white} ml='10px' />
                 </GhostSolidSmall>
+            )
+        case 'bottomSheet':
+            return (
+                <BottomSheet>
+                    <Text text={text.toString()} type='H4' align='center' />
+                </BottomSheet>
             )
     }
 }

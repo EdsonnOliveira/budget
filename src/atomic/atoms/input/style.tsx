@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { white, cian } from "../../constants/colors";
+import { white, gray } from "../../constants/colors";
 import { IndexStyledProps } from "./models";
 
 export const Main = styled.View`
@@ -13,7 +13,7 @@ export const Main = styled.View`
 `
 
 export const TextInput = styled.TextInput.attrs({
-    placeholderTextColor: cian
+    placeholderTextColor: gray
 })`
     flex: 1;
     text-align: ${( props: IndexStyledProps ) => ( props.textAlign ?? 'left' )};

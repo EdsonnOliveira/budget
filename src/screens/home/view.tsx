@@ -21,7 +21,7 @@ const View: React.FC<ViewProps> = ({
                 <BoxMiddle icon={Money} title='Semana' value='R$ 4.270,15' mr='10px' />
                 <BoxMiddle icon={Hand} title='Mês' value='R$ 13.021,99' ml='10px' />
             </BoxColumn>
-            <Text text='Histórico' type='H2' mt='25px' mb='25px' />
+            <Text text='Histórico' type='H2' mt='25px' mb='10px' />
             <FlatList
                 data={history}
                 style={{width: '100%'}}

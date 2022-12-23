@@ -11,6 +11,7 @@ export default interface IndexProps extends Margins {
     tag?: string;
     flex?: boolean;
     sizeIcon?: Dimension;
+    disabled?: boolean
 }
 
 type Types = 'primaryLarge' | 'primaryMedium' | 'primarySmall' |
@@ -23,11 +24,13 @@ type Types = 'primaryLarge' | 'primaryMedium' | 'primarySmall' |
             'hexagonGhostSolidLarge'| 'hexagonGhostSolidMedium' |
             'hexagonGradientLarge' | 'hexagonGradientMedium' |
             'ghostSmall' |
-            'ghostSolidSmall'
+            'ghostSolidSmall' |
+            'bottomSheet'
 
 export type IndexStyledProps = StyledProps<{
     flex?: boolean;
     sizeIcon?: Dimension;
+    disabled?: boolean
 }>
 
 type Dimension = {

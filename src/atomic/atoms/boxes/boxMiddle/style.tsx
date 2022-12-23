@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { boxShadow, elevation, shadowOpacity } from "../../../constants/box";
+import { shadow } from "../../../constants/box";
 
 import { borderRadius } from "../../../constants/button";
 import { secondary, white } from "../../../constants/colors";
@@ -10,9 +10,9 @@ export const Main = styled.View`
     height: 100px;
     border-radius: ${borderRadius};
     background-color: ${white};
-    elevation: ${elevation};
-    box-shadow: ${boxShadow};
-    shadow-opacity: ${shadowOpacity};
+    elevation: ${shadow.elevation};
+    box-shadow: ${shadow.boxShadow};
+    shadow-opacity: ${shadow.shadowOpacity};
     padding: 15px;
 
     margin-top: ${( props: MarginsStyledProps ) => (props.mt ?? 0)};

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { black, cian, white } from "../../../constants/colors";
+import { black, gray, white } from "../../../constants/colors";
 import Text from "../../text";
 
 import Model from "./models";
@@ -27,7 +27,7 @@ const BoxMiddle: React.FC<Model> = ({
                 : <Image source={icon} />
             }
             <BoxText>
-                <Text text={title} type='H4' color={cian} align='right' mb='5px' />
+                <Text text={title} type='H4' color={gray} align='right' mb='5px' />
                 <Text text={value} type='H3' color={black} align='right' mb='5px' />
             </BoxText>
         </Main>

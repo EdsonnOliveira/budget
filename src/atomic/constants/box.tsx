@@ -1,5 +1,19 @@
-import { black } from "./colors";
+import { black, primary, secondary } from "./colors";
 
-export const elevation = 10;
-export const boxShadow = `1px 2px 3px ${black}`
-export const shadowOpacity = 0.25;
+export const shadow = {
+    elevation: 10,
+    boxShadow: `1px 2px 3px ${black}`,
+    shadowOpacity: 0.25
+}
+
+export const shadowPrimary = {
+    elevation: 10,
+    boxShadow: `0px 3px 5px ${primary}`,
+    shadowOpacity: 1
+}
+
+export const shadowSecondary = {
+    elevation: 10,
+    boxShadow: `0px 3px 5px ${secondary}`,
+    shadowOpacity: 1
+}

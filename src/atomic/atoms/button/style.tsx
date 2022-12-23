@@ -1,15 +1,37 @@
 import styled from "styled-components/native";
 import LinearGradient from 'react-native-linear-gradient'
 import { borderRadius } from "../../constants/button";
-import { gradient, secondary } from "../../constants/colors";
+import { gradient, grey, primary, secondary } from "../../constants/colors";
 import { MarginsStyledProps } from "../../constants/spacing";
 import { IndexStyledProps } from "./models";
-import { elevation } from "../../constants/box";
+import { shadowPrimary, shadowSecondary } from "../../constants/box";
+
+export const PrimaryLarge = styled.TouchableOpacity`
+    width: 320px;
+    height: 55px;
+    justify-content: center;
+    align-items: center;
+    background-color: ${( props: IndexStyledProps ) => ( props.disabled ? `${grey}` : `${primary}` )};
+    border-radius: ${borderRadius};
+    elevation: ${( props: IndexStyledProps ) => ( props.disabled ? 0 : `${shadowPrimary.elevation}`)};
+    box-shadow: ${( props: IndexStyledProps ) => ( props.disabled ? 'none' : `${shadowPrimary.boxShadow}`)};
+    shadow-opacity: ${( props: IndexStyledProps ) => ( props.disabled ? 0 : `${shadowPrimary.shadowOpacity}`)};
+
+    margin-top: ${( props: MarginsStyledProps ) => (props.mt ?? 0)};
+    margin-left: ${( props: MarginsStyledProps ) => (props.ml ?? 0)};
+    margin-right: ${( props: MarginsStyledProps ) => (props.mr ?? 0)};
+    margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
+`
 
 export const PrimaryMedium = styled.TouchableOpacity`
     width: 150px;
     height: 55px;
     border-radius: ${borderRadius};
+
+    margin-top: ${( props: MarginsStyledProps ) => (props.mt ?? 0)};
+    margin-left: ${( props: MarginsStyledProps ) => (props.ml ?? 0)};
+    margin-right: ${( props: MarginsStyledProps ) => (props.mr ?? 0)};
+    margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
 `
 
 export const GhostSmall = styled.TouchableOpacity`
@@ -18,6 +40,11 @@ export const GhostSmall = styled.TouchableOpacity`
     border-radius: ${borderRadius};
     justify-content: center;
     align-items: center;
+
+    margin-top: ${( props: MarginsStyledProps ) => (props.mt ?? 0)};
+    margin-left: ${( props: MarginsStyledProps ) => (props.ml ?? 0)};
+    margin-right: ${( props: MarginsStyledProps ) => (props.mr ?? 0)};
+    margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
 `
 
 export const MarkerShadow = styled.View`
@@ -25,9 +52,9 @@ export const MarkerShadow = styled.View`
     border-top-right-radius: 20px;
     position: absolute;
     bottom: 0;
-    elevation: ${elevation};
-    box-shadow: 0px 2px 3px ${secondary};
-    shadow-opacity: 1;
+    elevation: ${shadowSecondary.elevation};
+    box-shadow: ${shadowSecondary.boxShadow};
+    shadow-opacity: ${shadowSecondary.shadowOpacity};
     justify-content: center;
     align-items: center;
 `
@@ -111,4 +138,23 @@ export const GhostSolidSmall = styled.TouchableOpacity`
     border-radius: 50px;
     flex-direction: row;
     align-items: center;
+
+    margin-top: ${( props: MarginsStyledProps ) => (props.mt ?? 0)};
+    margin-left: ${( props: MarginsStyledProps ) => (props.ml ?? 0)};
+    margin-right: ${( props: MarginsStyledProps ) => (props.mr ?? 0)};
+    margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
+`
+
+export const BottomSheet = styled.TouchableOpacity`
+    width: 100%;
+    height: 90px;
+    background-color: ${grey};
+    border-radius: ${borderRadius};
+    justify-content: center;
+    align-items: center;
+
+    margin-top: ${( props: MarginsStyledProps ) => (props.mt ?? 0)};
+    margin-left: ${( props: MarginsStyledProps ) => (props.ml ?? 0)};
+    margin-right: ${( props: MarginsStyledProps ) => (props.mr ?? 0)};
+    margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
 `
