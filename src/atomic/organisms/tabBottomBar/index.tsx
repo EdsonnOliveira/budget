@@ -21,7 +21,7 @@ const TabBottomBar: React.FC<IndexProps> = ({
             <Button type='ghostSmall' text={Home} onPress={() => navigation.navigate('Home')} marker={screenSelected == 'home' ?? false} flex />
             <Button type='ghostSmall' text={Home} onPress={() => null} marker={screenSelected == 'sales' ?? false} flex />
             <Button type='hexagonGradientMedium' text={Scanner} onPress={() => navigation.navigate('Scanner')} mt='-30px' />
-            <Button type='ghostSmall' text={Home} onPress={() => null} marker={screenSelected == 'products' ?? false} flex />
+            <Button type='ghostSmall' text={Home} onPress={() => navigation.navigate('Products')} marker={screenSelected == 'products' ?? false} flex />
             <Button type='ghostSmall' text={Home} onPress={() => null} marker={screenSelected == 'configurations' ?? false} flex />
         </Main>
     )

@@ -14,19 +14,30 @@ import { StackProps } from "../../../routes/models";
 
 const Header: React.FC<IndexProps> = ({
     title,
-    onBack
+    onBack,
+    noBackButton
 }) => {
     const navigation = useNavigation<NativeStackNavigationProp<StackProps>>()
 
     return (
         <Main>
-            <Button
-                type='ghostSmall'
-                text={Arrow}
-                onPress={() => onBack ?? navigation.goBack()}
-                sizeIcon={{width: '20px', height: '20px'}}
-            />
-            <Text text={title} type='H2' color={black} mt='10px' mb='10px' />
+            {
+                !noBackButton && (
+                    <Button
+                        type='ghostSmall'
+                        text={Arrow}
+                        onPress={() => onBack ?? navigation.goBack()}
+                        sizeIcon={{width: '20px', height: '20px'}}
+                    />
+                )
+            }
+            <Text
+                text={title}
+                type='H2'
+                color={black}
+                mt='10px'
+                ml={noBackButton ? '30px' : '0px'}
+                mb='10px' />
         </Main>
     )
 }

@@ -4,13 +4,13 @@ import { FlatList } from "react-native";
 import Container from "../../atomic/atoms/container";
 import BoxColumn from "../../atomic/atoms/boxes/column";
 import BoxMiddle from "../../atomic/atoms/boxes/boxMiddle";
+import { Separator } from "./style";
 
 import Money from '../../assets/icons/money.png'
 import Hand from '../../assets/icons/handMoney.png'
 import Text from "../../atomic/atoms/text";
 
 import { ViewProps } from "./models";
-import { Separator } from "./style";
 
 const View: React.FC<ViewProps> = ({
     history

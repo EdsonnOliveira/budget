@@ -7,6 +7,7 @@ import BoxValue from '../../atomic/molecules/boxValue';
 
 import View from './view'
 import TabBottomBar from '../../atomic/organisms/tabBottomBar';
+import { white } from '../../atomic/constants/colors';
 
 const Items: BudgetType[] = [
     {
@@ -64,12 +65,12 @@ const Items: BudgetType[] = [
 const Home: React.FC = ({}) => {
     return (
         <>
-            <Main statusBar>
+            <Main statusBar={{ doNotShow: true }}>
                 <BoxValue type='big' label='Hoje' value='190,00' />
                 <View history={Items} />
             </Main>
             <TabBottomBar screenSelected='home' />
-        </>
+        </> 
     )
 }
 

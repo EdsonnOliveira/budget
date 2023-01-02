@@ -5,7 +5,7 @@ import { borderRadius } from "../../../constants/button";
 import { secondary, white } from "../../../constants/colors";
 import { MarginsStyledProps } from "../../../constants/spacing";
 
-export const Main = styled.View`
+export const Main = styled.TouchableOpacity`
     flex: 1;
     height: 100px;
     border-radius: ${borderRadius};

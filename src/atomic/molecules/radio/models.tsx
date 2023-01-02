@@ -1,13 +1,13 @@
 import { StyledProps } from "styled-components";
 
 export interface IndexProps {
-    items: Items[];
+    items: ItemsRadio[];
     selected: number;
-    setSelected: (selected: number) => void;
+    setSelected: (selected: ItemsRadio) => void;
     textSelected?: string;
 }
 
-export type Items = {
+export type ItemsRadio = {
     id: number;
     description: string;
 }

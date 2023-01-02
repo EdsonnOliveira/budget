@@ -5,4 +5,5 @@ export default interface Model extends Margins {
     icon: string | Image;
     title: string;
     value: string;
+    onPress?: () => void;
 }

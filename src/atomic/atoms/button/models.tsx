@@ -3,7 +3,7 @@ import { StyledProps } from "styled-components";
 import { Margins } from "../../constants/spacing";
 
 export default interface IndexProps extends Margins {
-    type: Types;
+    type: ButtonTypes;
     text: string | Image;
     icon?: SVGElement | Image;
     onPress: () => void;
@@ -14,9 +14,10 @@ export default interface IndexProps extends Margins {
     disabled?: boolean
 }
 
-type Types = 'primaryLarge' | 'primaryMedium' | 'primarySmall' |
+export type ButtonTypes = 'primaryLarge' | 'primaryMedium' | 'primarySmall' |
             'secundaryLarge' | 'secundaryMedium' | 'secundarySmall' |
             'tertiaryLarge' | 'tertiaryMedium' | 'tertiarySmall' |
+            'warningLarge' | 'warningMedium' | 'warningSmall' |
             'gradientLarge' | 'gradientMedium' | 'gradientSmall' |
             'hexagonPrimaryLarge' | 'hexagonPrimaryMedium' |
             'hexagonSecundaryLarge' | 'hexagonSecundaryMedium' |

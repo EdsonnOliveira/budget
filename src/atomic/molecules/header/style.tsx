@@ -4,7 +4,7 @@ import { white } from "../../constants/colors";
 
 export const Main = styled.SafeAreaView`
     width: 100%;
-    height: 130px;
+    height: 70px;
     background-color: ${white};
     elevation: ${shadow.elevation};
     box-shadow: ${shadow.boxShadow};

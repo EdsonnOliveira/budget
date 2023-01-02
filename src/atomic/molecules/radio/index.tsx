@@ -19,7 +19,7 @@ const Radio: React.FC<IndexProps> = ({
                     <>
                         <Item
                             key={index}
-                            onPress={() => setSelected(index)}
+                            onPress={() => setSelected({...item})}
                             selected={(index === selected && !textSelected) ?? false}
                         >
                             <Text

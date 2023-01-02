@@ -10,13 +10,18 @@ const BoxMiddle: React.FC<Model> = ({
     icon,
     title,
     value,
+    onPress,
     mt,
     ml,
     mr,
     mb
 }) => {
     return (
-        <Main mt={mt} ml={ml} mr={mr} mb={mb}>
+        <Main
+            onPress={onPress}
+            activeOpacity={onPress ? 0.3 : 1}
+            mt={mt} ml={ml} mr={mr} mb={mb}
+        >
             {
                 typeof icon == 'string'
                 ? (

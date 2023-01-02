@@ -9,3 +9,12 @@ export interface BudgetType {
     payment: PaymentTypes
     value: string;
 }
+
+export interface ItemType {
+    sequence: string | number;
+    name: string;
+    value: string;
+    barCode: string;
+}
+
+export type ModalType = (state: boolean) => void;

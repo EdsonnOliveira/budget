@@ -1,10 +1,10 @@
 import styled from "styled-components/native";
 import LinearGradient from 'react-native-linear-gradient'
 import { borderRadius } from "../../constants/button";
-import { gradient, grey, primary, secondary } from "../../constants/colors";
+import { gradient, grey, primary, secondary, warning } from "../../constants/colors";
 import { MarginsStyledProps } from "../../constants/spacing";
 import { IndexStyledProps } from "./models";
-import { shadowPrimary, shadowSecondary } from "../../constants/box";
+import { shadowPrimary, shadowSecondary, shadowWarning } from "../../constants/box";
 
 export const PrimaryLarge = styled.TouchableOpacity`
     width: 320px;
@@ -23,6 +23,23 @@ export const PrimaryLarge = styled.TouchableOpacity`
     margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
 `
 
+export const WarningLarge = styled.TouchableOpacity`
+    width: 320px;
+    height: 55px;
+    justify-content: center;
+    align-items: center;
+    background-color: ${( props: IndexStyledProps ) => ( props.disabled ? `${grey}` : `${warning}` )};
+    border-radius: ${borderRadius};
+    elevation: ${( props: IndexStyledProps ) => ( props.disabled ? 0 : `${shadowWarning.elevation}`)};
+    box-shadow: ${( props: IndexStyledProps ) => ( props.disabled ? 'none' : `${shadowWarning.boxShadow}`)};
+    shadow-opacity: ${( props: IndexStyledProps ) => ( props.disabled ? 0 : `${shadowWarning.shadowOpacity}`)};
+
+    margin-top: ${( props: MarginsStyledProps ) => (props.mt ?? 0)};
+    margin-left: ${( props: MarginsStyledProps ) => (props.ml ?? 0)};
+    margin-right: ${( props: MarginsStyledProps ) => (props.mr ?? 0)};
+    margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
+`
+
 export const PrimaryMedium = styled.TouchableOpacity`
     width: 150px;
     height: 55px;
@@ -32,6 +49,26 @@ export const PrimaryMedium = styled.TouchableOpacity`
     margin-left: ${( props: MarginsStyledProps ) => (props.ml ?? 0)};
     margin-right: ${( props: MarginsStyledProps ) => (props.mr ?? 0)};
     margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
+`
+
+export const GradientLarge = styled.TouchableOpacity`
+    width: 320px;
+    height: 55px;
+    elevation: ${shadowSecondary.elevation};
+    box-shadow: ${shadowSecondary.boxShadow};
+    shadow-opacity: ${shadowSecondary.shadowOpacity};
+`
+
+export const GradientLargeBox = styled(LinearGradient).attrs({
+    colors: gradient,
+    start: { x: 1, y: 0 },
+    end: { x: 0, y: 0 },
+})`
+    width: 320px;
+    height: 55px;
+    border-radius: ${borderRadius};
+    justify-content: center;
+    align-items: center;
 `
 
 export const GhostSmall = styled.TouchableOpacity`
@@ -98,6 +135,16 @@ export const HexagonGradientLarge = styled.TouchableOpacity`
 `
 
 export const HexagonGradientMedium = styled.TouchableOpacity`
+    width: 100px;
+    height: 90px;
+
+    margin-top: ${( props: MarginsStyledProps ) => (props.mt ?? 0)};
+    margin-left: ${( props: MarginsStyledProps ) => (props.ml ?? 0)};
+    margin-right: ${( props: MarginsStyledProps ) => (props.mr ?? 0)};
+    margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
+`
+
+export const HexagonTertiaryMedium = styled.TouchableOpacity`
     width: 100px;
     height: 90px;
 

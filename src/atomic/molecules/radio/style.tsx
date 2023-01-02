@@ -9,7 +9,7 @@ export const Main = styled.View`
 
 export const Item = styled.TouchableOpacity`
     width: 100%;
-    height: 90px;
+    height: 80px;
     background-color: ${( props: IndexStyledProps ) => ( props.selected ? `${secondary}` : `${grey}` )};
     border-radius: ${borderRadius};
     justify-content: center;

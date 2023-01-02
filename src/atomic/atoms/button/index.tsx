@@ -1,12 +1,32 @@
 import React from "react";
 import Text from "../text";
 
-import { GhostSmall, Image, MarkerShadow, HexagonGradientMedium, GhostSolidSmall, HexagonGradientLarge, BoxCenteredText, HexagonPrimaryMedium, HexagonGhostSolidMedium, MarkerBottom, BottomSheet, PrimaryMedium, PrimaryLarge } from "./style";
+import {
+    GhostSmall,
+    Image,
+    MarkerShadow,
+    HexagonGradientMedium,
+    GhostSolidSmall,
+    HexagonGradientLarge,
+    BoxCenteredText,
+    HexagonPrimaryMedium,
+    HexagonGhostSolidMedium,
+    MarkerBottom,
+    BottomSheet,
+    PrimaryMedium,
+    PrimaryLarge,
+    GradientLarge,
+    GradientLargeBox,
+    HexagonTertiaryMedium,
+    WarningLarge
+} from "./style";
 
 import HexagonPrimaryMediumImage from '../../../assets/vectors/hexagonPrimaryMedium.png'
 import HexagonGradientMediumImage from '../../../assets/vectors/hexagonGradientMedium.png'
 import HexagonGradientLargeImage from '../../../assets/vectors/hexagonGradientLarge.png'
+import HexagonTertiaryMediumImage from '../../../assets/vectors/hexagonTertiaryMedium.png'
 import HexagonGhostSolidMediumImage from '../../../assets/vectors/hexagonGhostSolidMedium.png'
+
 import IndexProps from "./models";
 import { black, white } from "../../constants/colors";
 import Tag from "../tag";
@@ -41,6 +61,38 @@ const Button: React.FC<IndexProps> = ({
                         color={disabled ? black : white}
                     />
                 </PrimaryLarge>
+            )
+        case 'warningLarge':
+            return (
+                <WarningLarge
+                    onPress={onPress}
+                    mt={mt} ml={ml} mr={mr} mb={mb}
+                    disabled={disabled}
+                >
+                    <Text
+                        text={text.toString()}
+                        type='H5'
+                        align='center'
+                        color={disabled ? black : white}
+                    />
+                </WarningLarge>
+            )
+        case 'gradientLarge':
+            return (
+                <GradientLarge
+                    onPress={onPress}
+                    mt={mt} ml={ml} mr={mr} mb={mb}
+                    disabled={disabled}
+                >
+                    <GradientLargeBox>
+                        <Text
+                            text={text.toString()}
+                            type='H5'
+                            align='center'
+                            color={disabled ? black : white}
+                        />
+                    </GradientLargeBox>
+                </GradientLarge>
             )
         case 'hexagonPrimaryMedium':
             return (
@@ -86,6 +138,13 @@ const Button: React.FC<IndexProps> = ({
                     <Image source={HexagonGradientMediumImage} style={{width: '100%', height: '100%'}} />
                 </HexagonGradientMedium>
             )
+        case 'hexagonTertiaryMedium':
+            return (
+                <HexagonTertiaryMedium onPress={onPress} mt={mt} ml={ml} mr={mr} mb={mb}>
+                    <Image source={text} style={{width: '100%', top: 28, position: 'absolute', zIndex: 2, resizeMode: 'contain'}} />
+                    <Image source={HexagonTertiaryMediumImage} style={{width: '100%', height: '100%'}} />
+                </HexagonTertiaryMedium>
+            )
         case 'hexagonGhostSolidMedium':
             return (
                 <HexagonGhostSolidMedium onPress={onPress} mt={mt} ml={ml} mr={mr} mb={mb}>
@@ -122,7 +181,7 @@ const Button: React.FC<IndexProps> = ({
             )
         case 'bottomSheet':
             return (
-                <BottomSheet>
+                <BottomSheet onPress={onPress}>
                     <Text text={text.toString()} type='H4' align='center' />
                 </BottomSheet>
             )

@@ -2,7 +2,7 @@ import React from "react";
 import { StatusBar } from "react-native";
 import { IndexProps } from "./models";
 
-import { Container } from './style'
+import { Container, SafeArea } from './style'
 
 const Main: React.FC<IndexProps> = ({
     statusBar,
@@ -11,10 +11,13 @@ const Main: React.FC<IndexProps> = ({
     bgColor
 }) => {
     return (
-        <Container noMargin={noMargin} bgColor={bgColor}>
-            <StatusBar barStyle={statusBar ? 'light-content' : 'dark-content'} translucent />
-            { children }
-        </Container>
+        <>
+            { !!!statusBar?.doNotShow && <SafeArea statusBar={{bgColor: statusBar?.bgColor}} /> }
+            <Container noMargin={noMargin} bgColor={bgColor}>
+                <StatusBar barStyle={statusBar?.barStyle ?? 'default'} translucent />
+                { children }
+            </Container>
+        </>
     )
 }
 
