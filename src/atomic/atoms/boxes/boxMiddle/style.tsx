@@ -13,7 +13,7 @@ export const Main = styled.TouchableOpacity`
     elevation: ${shadow.elevation};
     box-shadow: ${shadow.boxShadow};
     shadow-opacity: ${shadow.shadowOpacity};
-    padding: 15px;
+    padding: 10px;
 
     margin-top: ${( props: MarginsStyledProps ) => (props.mt ?? 0)};
     margin-left: ${( props: MarginsStyledProps ) => (props.ml ?? 0)};

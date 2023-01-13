@@ -14,6 +14,15 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-budget-budgetTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-budget-budgetTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		C98ED8B22970800D00611B96 /* LexendDeca-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98ED89C29707E2900611B96 /* LexendDeca-Regular.ttf */; };
+		C98ED8B32970801E00611B96 /* LexendDeca-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98ED89829707E2900611B96 /* LexendDeca-Black.ttf */; };
+		C98ED8B42970801E00611B96 /* LexendDeca-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98ED89529707E2900611B96 /* LexendDeca-Bold.ttf */; };
+		C98ED8B52970801E00611B96 /* LexendDeca-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98ED89D29707E2900611B96 /* LexendDeca-ExtraBold.ttf */; };
+		C98ED8B62970801E00611B96 /* LexendDeca-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98ED89929707E2900611B96 /* LexendDeca-ExtraLight.ttf */; };
+		C98ED8B72970801E00611B96 /* LexendDeca-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98ED89629707E2900611B96 /* LexendDeca-Light.ttf */; };
+		C98ED8B82970801E00611B96 /* LexendDeca-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98ED89729707E2900611B96 /* LexendDeca-Medium.ttf */; };
+		C98ED8B92970801E00611B96 /* LexendDeca-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98ED89A29707E2900611B96 /* LexendDeca-SemiBold.ttf */; };
+		C98ED8BA2970801E00611B96 /* LexendDeca-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98ED89B29707E2900611B96 /* LexendDeca-Thin.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +52,15 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-budget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-budget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = budget/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-budget-budgetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budget-budgetTests.release.xcconfig"; path = "Target Support Files/Pods-budget-budgetTests/Pods-budget-budgetTests.release.xcconfig"; sourceTree = "<group>"; };
+		C98ED89529707E2900611B96 /* LexendDeca-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Bold.ttf"; sourceTree = "<group>"; };
+		C98ED89629707E2900611B96 /* LexendDeca-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Light.ttf"; sourceTree = "<group>"; };
+		C98ED89729707E2900611B96 /* LexendDeca-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Medium.ttf"; sourceTree = "<group>"; };
+		C98ED89829707E2900611B96 /* LexendDeca-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Black.ttf"; sourceTree = "<group>"; };
+		C98ED89929707E2900611B96 /* LexendDeca-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-ExtraLight.ttf"; sourceTree = "<group>"; };
+		C98ED89A29707E2900611B96 /* LexendDeca-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-SemiBold.ttf"; sourceTree = "<group>"; };
+		C98ED89B29707E2900611B96 /* LexendDeca-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Thin.ttf"; sourceTree = "<group>"; };
+		C98ED89C29707E2900611B96 /* LexendDeca-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Regular.ttf"; sourceTree = "<group>"; };
+		C98ED89D29707E2900611B96 /* LexendDeca-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-ExtraBold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -86,6 +104,7 @@
 		13B07FAE1A68108700A75B9A /* budget */ = {
 			isa = PBXGroup;
 			children = (
+				C98ED8A829707FC000611B96 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -146,6 +165,22 @@
 				89C6BE57DB24E9ADA2F236DE /* Pods-budget-budgetTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C98ED8A829707FC000611B96 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C98ED89829707E2900611B96 /* LexendDeca-Black.ttf */,
+				C98ED89529707E2900611B96 /* LexendDeca-Bold.ttf */,
+				C98ED89D29707E2900611B96 /* LexendDeca-ExtraBold.ttf */,
+				C98ED89929707E2900611B96 /* LexendDeca-ExtraLight.ttf */,
+				C98ED89629707E2900611B96 /* LexendDeca-Light.ttf */,
+				C98ED89729707E2900611B96 /* LexendDeca-Medium.ttf */,
+				C98ED89C29707E2900611B96 /* LexendDeca-Regular.ttf */,
+				C98ED89A29707E2900611B96 /* LexendDeca-SemiBold.ttf */,
+				C98ED89B29707E2900611B96 /* LexendDeca-Thin.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +277,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C98ED8B32970801E00611B96 /* LexendDeca-Black.ttf in Resources */,
+				C98ED8B42970801E00611B96 /* LexendDeca-Bold.ttf in Resources */,
+				C98ED8B52970801E00611B96 /* LexendDeca-ExtraBold.ttf in Resources */,
+				C98ED8B62970801E00611B96 /* LexendDeca-ExtraLight.ttf in Resources */,
+				C98ED8B72970801E00611B96 /* LexendDeca-Light.ttf in Resources */,
+				C98ED8B82970801E00611B96 /* LexendDeca-Medium.ttf in Resources */,
+				C98ED8B92970801E00611B96 /* LexendDeca-SemiBold.ttf in Resources */,
+				C98ED8BA2970801E00611B96 /* LexendDeca-Thin.ttf in Resources */,
+				C98ED8B22970800D00611B96 /* LexendDeca-Regular.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -274,9 +318,15 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-budget/Pods-budget-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+				"$(SRCROOT)/react-native-camera/react_native_camera.framework",
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-budget/Pods-budget-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/react_native_camera.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -486,6 +536,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8J4ZLBATC8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = budget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
@@ -498,7 +549,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.bness.budget;
 				PRODUCT_NAME = budget;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -513,6 +564,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8J4ZLBATC8;
 				INFOPLIST_FILE = budget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -524,7 +576,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.bness.budget;
 				PRODUCT_NAME = budget;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

@@ -7,7 +7,8 @@ import { spacing, TextWeightStyledProps } from "../../constants/text";
 import { IndexStyledProps } from "./models";
 
 export const H1 = styled.Text`
-    font-size: 70px;
+    font-family: 'LexendDeca-Regular';
+    font-size: 60px;
     font-weight: ${( props: TextWeightStyledProps ) => ( props.weight ?? '700' )};
     color: ${( props: IndexStyledProps ) => (props.color ?? black)};
     letter-spacing: ${spacing};
@@ -20,7 +21,8 @@ export const H1 = styled.Text`
 `
 
 export const H2 = styled.Text`
-    font-size: 25px;
+    font-family: 'LexendDeca-Regular';
+    font-size: 20px;
     font-weight: ${( props: TextWeightStyledProps ) => ( props.weight ?? '600' )};
     color: ${( props: IndexStyledProps ) => (props.color ?? black)};
     letter-spacing: ${spacing};
@@ -33,19 +35,7 @@ export const H2 = styled.Text`
 `
 
 export const H3 = styled.Text`
-    font-size: 21px;
-    font-weight: ${( props: TextWeightStyledProps ) => ( props.weight ?? '700' )};
-    color: ${( props: IndexStyledProps ) => (props.color ?? black)};
-    letter-spacing: ${spacing};
-    text-align: ${( props: IndexStyledProps ) => (props.textAlign ?? 'left')};
-
-    margin-top: ${( props: MarginsStyledProps ) => (props.mt ?? 0)};
-    margin-left: ${( props: MarginsStyledProps ) => (props.ml ?? 0)};
-    margin-right: ${( props: MarginsStyledProps ) => (props.mr ?? 0)};
-    margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
-`
-
-export const H4 = styled.Text`
+    font-family: 'LexendDeca-Regular';
     font-size: 16px;
     font-weight: ${( props: TextWeightStyledProps ) => ( props.weight ?? '700' )};
     color: ${( props: IndexStyledProps ) => (props.color ?? black)};
@@ -58,7 +48,22 @@ export const H4 = styled.Text`
     margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
 `
 
+export const H4 = styled.Text`
+    font-family: 'LexendDeca-Regular';
+    font-size: 14px;
+    font-weight: ${( props: TextWeightStyledProps ) => ( props.weight ?? '700' )};
+    color: ${( props: IndexStyledProps ) => (props.color ?? black)};
+    letter-spacing: ${spacing};
+    text-align: ${( props: IndexStyledProps ) => (props.textAlign ?? 'left')};
+
+    margin-top: ${( props: MarginsStyledProps ) => (props.mt ?? 0)};
+    margin-left: ${( props: MarginsStyledProps ) => (props.ml ?? 0)};
+    margin-right: ${( props: MarginsStyledProps ) => (props.mr ?? 0)};
+    margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
+`
+
 export const H5 = styled.Text`
+    font-family: 'LexendDeca-Regular';
     font-size: 19px;
     font-weight: ${( props: TextWeightStyledProps ) => ( props.weight ?? '900' )};
     color: ${( props: IndexStyledProps ) => (props.color ?? black)};

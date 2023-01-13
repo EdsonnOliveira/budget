@@ -14,4 +14,5 @@ export const Main = styled.SafeAreaView`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    z-index: 999;
 `

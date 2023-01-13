@@ -2,6 +2,7 @@ require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 platform :ios, '12.4'
+permissions_path = '../node_modules/react-native-permissions/ios'
 install! 'cocoapods', :deterministic_uuids => false
 
 target 'budget' do
@@ -26,6 +27,11 @@ target 'budget' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+  pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
+  pod 'Permission-PhotoLibraryAddOnly', :path => "#{permissions_path}/PhotoLibraryAddOnly"
+  pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways"
+  # pod 'react-native-camera', path: '../node_modules/react-native-camera'
 
   target 'budgetTests' do
     inherit! :complete

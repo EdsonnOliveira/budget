@@ -22,6 +22,7 @@ export const Main = styled.View`
 export const TextInput = styled.TextInput.attrs({
     placeholderTextColor: gray
 })`
+    font-family: 'LexendDeca-Regular';
     flex: 1;
     text-align: ${( props: IndexStyledProps ) => ( props.textAlign ?? 'left' )};
     font-size: 21px;

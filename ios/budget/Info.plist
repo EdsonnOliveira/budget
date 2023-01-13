@@ -35,8 +35,25 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<key>NSCameraUsageDescription</key>
+	<string>O Aplicativo precisará do acesso a câmera para leitura de Código de Barras</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>O Aplicativo precisará do acesso a câmera para leitura de Código de Barras</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>O Aplicativo precisará do acesso a câmera para leitura de Código de Barras</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string></string>
+		<string>LexendDeca-Black.ttf</string>
+		<string>LexendDeca-Bold.ttf</string>
+		<string>LexendDeca-ExtraBold.ttf</string>
+		<string>LexendDeca-ExtraLight.ttf</string>
+		<string>LexendDeca-Light.ttf</string>
+		<string>LexendDeca-Medium.ttf</string>
+		<string>LexendDeca-Regular.ttf</string>
+		<string>LexendDeca-SemiBold.ttf</string>
+		<string>LexendDeca-Thin.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

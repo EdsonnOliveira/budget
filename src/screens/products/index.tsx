@@ -28,7 +28,7 @@ const Products: React.FC = ({}) => {
 
     return (
         <>
-            <Main>
+            <Main statusBar={{ barStyle: 'dark-content' }}>
                 <Header title='Produtos' noBackButton />
                 <View
                     navigation={navigation}

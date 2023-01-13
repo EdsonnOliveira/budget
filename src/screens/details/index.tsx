@@ -69,7 +69,7 @@ const Details: React.FC = ({}) => {
 
     return (
         <>
-            <Main>
+            <Main statusBar={{ barStyle: 'dark-content' }}>
                 <Header title='Novo Orçamento' />
                 <View
                     products={Products}

@@ -1,17 +1,21 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { FlashMode } from "react-native-camera";
 import { StackProps } from "../../routes/models";
 
-export interface ViewProps {
+export interface ViewProps extends CameraProps, ManualProps {
     mode: ModeScanner
-    setMode: (mode: ModeScanner) => void;
 }
 
 export interface CameraProps {
     setMode: (mode: ModeScanner) => void;
     navigation: NativeStackNavigationProp<StackProps>;
+    flashMode: keyof FlashMode
+    setFlashMode: (mode: keyof FlashMode) => void;
+    scanned: string;
+    setScanned: (bar: string) => void;
 }
 
-export interface ManuelProps {
+export interface ManualProps {
     setMode: (mode: ModeScanner) => void;
     navigation: NativeStackNavigationProp<StackProps>;
 }
