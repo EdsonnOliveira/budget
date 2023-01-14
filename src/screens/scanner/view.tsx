@@ -23,19 +23,38 @@ import Notification from "../../atomic/atoms/notification";
 
 const View: React.FC<ViewProps> = ({
     mode,
+    total,
+    quantity,
     navigation,
     setMode,
     flashMode,
     setFlashMode,
     scanned,
-    setScanned
+    scannedProduct,
+    setBarCode,
+    productAdded,
+    addProductScanning
 }) => {
     return (
         <Container alignItems='center' justifyContent='space-between'>
             {
                 mode == 'camera'
-                ? <ModeCamera setMode={setMode} navigation={navigation} flashMode={flashMode} setFlashMode={setFlashMode} scanned={scanned} setScanned={setScanned} />
-                : <ModeManual setMode={setMode} navigation={navigation} />
+                ? (
+                    <ModeCamera
+                        setMode={setMode}
+                        navigation={navigation}
+                        flashMode={flashMode}
+                        setFlashMode={setFlashMode}
+                        scanned={scanned}
+                        scannedProduct={scannedProduct}
+                        setBarCode={setBarCode}
+                        productAdded={productAdded}
+                        addProductScanning={addProductScanning}
+                        total={total}
+                        quantity={quantity}
+                    />
+                )
+                : <ModeManual setMode={setMode} navigation={navigation} quantity={quantity} />
             }
         </Container>
     )
@@ -47,19 +66,24 @@ const ModeCamera: React.FC<CameraProps> = ({
     flashMode,
     setFlashMode,
     scanned,
-    setScanned
+    scannedProduct,
+    setBarCode,
+    productAdded,
+    addProductScanning,
+    quantity,
+    total
 }) => {
     return (
         <Scanner
             captureAudio={false}
             type={RNCamera.Constants.Type.back}
             flashMode={flashMode}
-            onBarCodeRead={({data}) => setScanned(data)}
+            onBarCodeRead={({data}) => setBarCode(data)}
         >
             <BarcodeMask
                 width={300}
                 height={130}
-                outerMaskOpacity={0.6}
+                outerMaskOpacity={0.4}
                 edgeRadius={7}
             />
             <BoxCommon alignItems='center'>
@@ -71,21 +95,21 @@ const ModeCamera: React.FC<CameraProps> = ({
                     onPress={() => setMode('manual')}
                     mb='30px'
                 />
-                {/* {
-                    scanned != null && (
+                {
+                    productAdded && (
                         <Notification
                             title='Produto adicionado!'
                             type='success'
                         />
                     )
-                } */}
+                }
             </BoxCommon>
             {
                 scanned && (
                     <BoxCard
-                        title='Nutella'
-                        subtitle='R$ 20,00'
-                        tag={{type: 'rectangle', value: '1'}}
+                        title={String(scannedProduct?.name)}
+                        subtitle={`R$ ${scannedProduct?.price}`}
+                        tag={{type: 'rectangle', value: String(scannedProduct?.sequence)}}
                         mt='310px'
                     />
                 )
@@ -100,14 +124,17 @@ const ModeCamera: React.FC<CameraProps> = ({
                     type='hexagonGradientLarge'
                     text={Scan}
                     sizeIcon={{width: 130, height: 40, top: 37}}
-                    onPress={() => setScanned('')}
+                    onPress={addProductScanning}
                     ml='5px'
                 />
                 <Button
                     type='hexagonPrimaryMedium'
                     text={Arrow}
-                    onPress={() => navigation.navigate('Details')}
-                    tag='2'
+                    onPress={() => {
+                        setFlashMode('off')
+                        navigation.navigate('Details', { total })
+                    }}
+                    tag={String(quantity)}
                     mr='-10px'
                 />
             </BoxColumn>
@@ -117,7 +144,8 @@ const ModeCamera: React.FC<CameraProps> = ({
 
 const ModeManual: React.FC<ManualProps> = ({
     setMode,
-    navigation
+    navigation,
+    quantity
 }) => {
     return (
         <>
@@ -141,7 +169,7 @@ const ModeManual: React.FC<ManualProps> = ({
                 <BoxCommon alignItems='center' flex>
                     <Button type='hexagonGradientLarge' text='Ok' onPress={() => null} ml='90px' />
                 </BoxCommon>
-                <Button type='hexagonPrimaryMedium' text={Arrow} onPress={() => navigation.navigate('Details')} tag='2' mr='-10px' />
+                <Button type='hexagonPrimaryMedium' text={Arrow} onPress={() => navigation.navigate('Details')} tag={String(quantity)} mr='-10px' />
             </BoxColumn>
         </>
     )

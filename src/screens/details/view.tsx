@@ -10,6 +10,7 @@ import BoxValue from "../../atomic/molecules/boxValue";
 import { ViewProps } from "./models";
 
 const View: React.FC<ViewProps> = ({
+    total,
     products,
     setModalPayment,
     paymentSelected,
@@ -20,7 +21,7 @@ const View: React.FC<ViewProps> = ({
 }) => {
     return (
         <Container>
-            <BoxValue type='medium' label='Hoje' value='83,00' />
+            <BoxValue type='medium' value={total} />
             <Text text='Pagar com' type='H2' mt='25px' mb='10px' />
             <Button
                 type='bottomSheet'

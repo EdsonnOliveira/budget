@@ -3,7 +3,9 @@ import { ItemType } from "../constants/types";
 export type StackProps = {
     Home: undefined;
     Scanner: undefined;
-    Details: undefined;
+    Details: {
+        total: number;
+    };
     DetailsModify: {
         data: undefined
     };

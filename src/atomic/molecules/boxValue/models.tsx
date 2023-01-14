@@ -2,7 +2,7 @@ import { StyledProps } from "styled-components";
 
 export default interface Model {
     type: types
-    label: string;
+    label?: string;
     value: string;
 }
 

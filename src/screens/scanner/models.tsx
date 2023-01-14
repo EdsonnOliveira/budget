@@ -3,7 +3,7 @@ import { FlashMode } from "react-native-camera";
 import { StackProps } from "../../routes/models";
 
 export interface ViewProps extends CameraProps, ManualProps {
-    mode: ModeScanner
+    mode: ModeScanner;
 }
 
 export interface CameraProps {
@@ -11,13 +11,27 @@ export interface CameraProps {
     navigation: NativeStackNavigationProp<StackProps>;
     flashMode: keyof FlashMode
     setFlashMode: (mode: keyof FlashMode) => void;
-    scanned: string;
-    setScanned: (bar: string) => void;
+    scanned: boolean;
+    scannedProduct: ScannedProductProps;
+    setBarCode: (bar: string) => void;
+    productAdded: boolean;
+    addProductScanning: () => void
+
+    quantity: number;
+    total: number;
 }
 
 export interface ManualProps {
     setMode: (mode: ModeScanner) => void;
     navigation: NativeStackNavigationProp<StackProps>;
+    quantity: number;
 }
+
+export type ScannedProductProps = {
+    sequence: string;
+    name: string;
+    barCode: string;
+    price: number;
+} | null
 
 export type ModeScanner = 'camera' | 'manual';

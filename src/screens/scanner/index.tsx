@@ -1,12 +1,14 @@
+import React, { useEffect, useState } from "react";
+
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import React, { useState } from "react";
 import { FlashMode } from "react-native-camera";
 
 import Main from "../../atomic/atoms/main";
 import Header from "../../atomic/molecules/header";
 import { StackProps } from "../../routes/models";
-import { ModeScanner } from "./models";
+
+import { ModeScanner, ScannedProductProps } from "./models";
 import View from "./view";
 
 const Scanner: React.FC = ({}) => {
@@ -14,7 +16,46 @@ const Scanner: React.FC = ({}) => {
 
     const [mode, setMode] = useState<ModeScanner>('camera')
     const [flashMode, setFlashMode] = useState<keyof FlashMode>('off' || 'torch')
-    const [scanned, setScanned] = useState<string>('')
+
+    const [scanned, setScanned] = useState<boolean>(false)
+    const [barCode, setBarCode] = useState<string>('')
+    const [scannedProduct, setScannedProduct] = useState<ScannedProductProps>(null)
+    const [productAdded, setProductAdded] = useState<boolean>(false)
+
+    const [total, setTotal] = useState<number>(0)
+    const [quantity, setQuantity] = useState<number>(0)
+
+    useEffect(() => {
+        findProduct(barCode)
+    }, [barCode])
+
+    const findProduct = (barCode: string) => {
+        if (!barCode)
+            return
+
+        let product: ScannedProductProps = {
+            sequence: String(quantity + 1),
+            name: 'Remédio',
+            barCode,
+            price: 2.00
+        }
+
+        setScanned(true)
+        setScannedProduct(product)
+        setTotal(total + product.price)
+    }
+
+    useEffect(() => {
+        setTimeout(() => {
+            setProductAdded(false)
+        }, 5000);
+    }, [productAdded])
+
+    const addProductScanning = () => {
+        setScanned(false)
+        setProductAdded(true)
+        setQuantity(quantity+1)
+    }
 
     return (
         <Main statusBar={{ barStyle: 'dark-content' }} noMargin bgColor="#282E36">
@@ -26,7 +67,12 @@ const Scanner: React.FC = ({}) => {
                 flashMode={flashMode}
                 setFlashMode={setFlashMode}
                 scanned={scanned}
-                setScanned={setScanned}
+                scannedProduct={scannedProduct}
+                setBarCode={setBarCode}
+                addProductScanning={addProductScanning}
+                productAdded={productAdded}
+                total={total}
+                quantity={quantity}
             />
         </Main>
     )

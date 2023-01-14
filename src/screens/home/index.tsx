@@ -65,7 +65,7 @@ const Items: BudgetType[] = [
 const Home: React.FC = ({}) => {
     return (
         <>
-            <Main statusBar={{ doNotShow: true }}>
+            <Main statusBar={{ doNotShow: true, barStyle: 'light-content' }}>
                 <BoxValue type='big' label='Hoje' value='190,00' />
                 <View history={Items} />
             </Main>

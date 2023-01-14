@@ -5,6 +5,7 @@ export interface IndexProps {
 export type ItemsList = {
     title: string;
     value: string;
+    valueNumber?: number;
     type?: TypeItemList;
 }
 

@@ -31,7 +31,7 @@ const BoxValue: React.FC<Model> = ({
                     </BoxButton>
             }
             { type == 'big' && showValue && (
-                <Text text={label} type='H2' color={white} />
+                <Text text={String(label)} type='H2' color={white} />
             ) }
             <BoxText align={!!!showValue}>
                 {

@@ -1,6 +1,10 @@
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useEffect, useState } from "react";
+
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+import { currency } from "../../constants/formats";
+import { StackProps } from "../../routes/models";
 
 import Main from "../../atomic/atoms/main";
 import Header from "../../atomic/molecules/header";
@@ -9,7 +13,6 @@ import { ItemsRadio } from "../../atomic/molecules/radio/models";
 import BottomSheet from "../../atomic/organisms/bottomSheet";
 import TabBottomBar from "../../atomic/organisms/tabBottomBar";
 import { ItemType, PaymentTypes } from "../../constants/types";
-import { StackProps } from "../../routes/models";
 
 import View from "./view";
 
@@ -45,6 +48,7 @@ const Payments: ItemsRadio[] = [
 
 const Details: React.FC = ({}) => {
     const navigation = useNavigation<NativeStackNavigationProp<StackProps>>()
+    const route = useRoute<RouteProp<StackProps, 'Details'>>();
 
     const [modalPayment, setModalPayment] = useState<boolean>(false)
     const [paymentSelected, setPaymentSelected] = useState<ItemsRadio>({id: -1, description: ''})
@@ -55,7 +59,19 @@ const Details: React.FC = ({}) => {
     const [paymentInfo, setPaymentInfo] = useState<ItemsList>({title: 'Pagamento', value: 'Dinheiro'})
     const [descountInfo, setDescountInfo] = useState<ItemsList>({title: 'Desconto', value: 'R$ 0,00'})
     const [subtotalInfo, setSubtotalInfo] = useState<ItemsList>({title: 'Subtotal', value: 'R$ 0,00'})
-    const [totalInfo, setTotalInfo] = useState<ItemsList>({title: 'Total', value: 'R$ 0,00', type: 'big'})
+    const [totalInfo, setTotalInfo] = useState<ItemsList>({title: 'Total', value: '0,00', valueNumber: 0.00, type: 'big'})
+
+    useEffect(() => {
+        setInfos()
+    }, [])
+
+    const setInfos = () => {
+        let total = currency(route.params?.total, 2, 3, '.', ',')
+        setTotalInfo(data => ({
+            ...data,
+            value: total
+        }))
+    }
 
     useEffect(() => {
         setPaymentInfo({title: 'Pagamento', value: paymentSelected.description})
@@ -72,6 +88,7 @@ const Details: React.FC = ({}) => {
             <Main statusBar={{ barStyle: 'dark-content' }}>
                 <Header title='Novo Orçamento' />
                 <View
+                    total={totalInfo.value}
                     products={Products}
                     setModalPayment={setModalPayment}
                     paymentSelected={paymentSelected}
@@ -98,7 +115,7 @@ const Details: React.FC = ({}) => {
                     {...paymentInfo},
                     {...descountInfo},
                     {...subtotalInfo},
-                    {...totalInfo}
+                    {...totalInfo, value: `R$ ${totalInfo.value}`}
                 ]}
                 visible={modalFinish}
                 setState={setModalFinish}
