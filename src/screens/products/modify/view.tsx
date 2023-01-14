@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../../../atomic/atoms/button";
 import Container from "../../../atomic/atoms/container";
 import Input from "../../../atomic/atoms/input";
+import Notification from "../../../atomic/atoms/notification";
 import { ViewProps } from "./models";
 
 const ProductModify: React.FC<ViewProps> = ({
@@ -10,7 +11,12 @@ const ProductModify: React.FC<ViewProps> = ({
     price,
     setPrice,
     barCode,
-    setBarCode
+    setBarCode,
+    buttonDisabled,
+    notification,
+    setModalDelete,
+    update,
+    del
 }) => {
     return (
         <Container alignItems='center'>
@@ -26,6 +32,7 @@ const ProductModify: React.FC<ViewProps> = ({
                 placeholder='Valor do produto'
                 value={price}
                 onChangeText={setPrice}
+                keyboardType='money'
                 mb='15px'
             />
             <Input
@@ -38,15 +45,18 @@ const ProductModify: React.FC<ViewProps> = ({
             <Button
                 type='primaryLarge'
                 text='Salvar'
-                onPress={() => null}
+                disabled={!!buttonDisabled}
+                onPress={update}
                 mt='10px'
             />
             <Button
                 type='warningLarge'
                 text='Excluir'
-                onPress={() => null}
+                disabled={notification.state === 'show'}
+                onPress={() => setModalDelete(true)}
                 mt='20px'
             />
+            <Notification type={notification.type} title={notification.title} state={notification.state} mt='20px' />
         </Container>
     )
 }

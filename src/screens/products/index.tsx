@@ -1,30 +1,48 @@
-import { useNavigation } from "@react-navigation/native";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import React from "react";
+
+import { ItemType } from "../../constants/types";
+import { StackProps } from "../../routes/models";
+
 import Main from "../../atomic/atoms/main";
 import Header from "../../atomic/molecules/header";
 import TabBottomBar from "../../atomic/organisms/tabBottomBar";
-import { ItemType } from "../../constants/types";
-import { StackProps } from "../../routes/models";
-import View from "./view";
 
-const Items: ItemType[] = [
-    {
-        sequence: '1',
-        name: 'Nutella',
-        value: '30,00',
-        barCode: '1'
-    },
-    {
-        sequence: '2',
-        name: 'Toddy',
-        value: '7,00',
-        barCode: '2'
-    },
-]
+import DBProducts, { Models as ModelsProducts } from '../../services/products'
+
+import View from "./view";
 
 const Products: React.FC = ({}) => {
     const navigation = useNavigation<NativeStackNavigationProp<StackProps>>()
+    
+    const [items, setItem] = useState<ItemType[]>()
+
+    useFocusEffect(() => {
+        listAll()
+    })
+
+    const listAll = () => {
+        DBProducts
+        .listAll()
+        .then((value: ModelsProducts[]) => {
+            let items: ItemType[] = []
+            value.map((item) => {
+                let json: ItemType = {
+                    sequence: String(item.id),
+                    name: String(item.name),
+                    value: String(item.price),
+                    barCode: String(item.barCode)
+                }
+                items.push(json)
+            })
+            setItem(items)
+        })
+        .catch((value: any) => {
+            console.warn(value)
+        })
+    }
 
     return (
         <>
@@ -32,7 +50,7 @@ const Products: React.FC = ({}) => {
                 <Header title='Produtos' noBackButton />
                 <View
                     navigation={navigation}
-                    items={Items}
+                    items={items}
                 />
             </Main>
             <TabBottomBar screenSelected='products' />

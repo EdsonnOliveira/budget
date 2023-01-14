@@ -1,7 +1,10 @@
 import React from "react";
+
 import Button from "../../../atomic/atoms/button";
 import Container from "../../../atomic/atoms/container";
 import Input from "../../../atomic/atoms/input";
+import Notification from "../../../atomic/atoms/notification";
+
 import { ViewProps } from "./models";
 
 const ProductAdd: React.FC<ViewProps> = ({
@@ -10,7 +13,10 @@ const ProductAdd: React.FC<ViewProps> = ({
     price,
     setPrice,
     barCode,
-    setBarCode
+    setBarCode,
+    buttonDisabled,
+    notification,
+    insert
 }) => {
     return (
         <Container alignItems='center'>
@@ -26,6 +32,7 @@ const ProductAdd: React.FC<ViewProps> = ({
                 placeholder='Valor do produto'
                 value={price}
                 onChangeText={setPrice}
+                keyboardType='money'
                 mb='15px'
             />
             <Input
@@ -33,14 +40,17 @@ const ProductAdd: React.FC<ViewProps> = ({
                 placeholder='Código de Barras'
                 value={barCode}
                 onChangeText={setBarCode}
+                keyboardType='number-pad'
                 mb='15px'
             />
             <Button
                 type='primaryLarge'
                 text='Salvar'
-                onPress={() => null}
+                disabled={!!buttonDisabled}
+                onPress={insert}
                 mt='10px'
             />
+            <Notification type={notification.type} title={notification.title} state={notification.state} mt='20px' />
         </Container>
     )
 }

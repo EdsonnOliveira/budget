@@ -48,7 +48,7 @@ const Payments: ItemsRadio[] = [
 
 const Details: React.FC = ({}) => {
     const navigation = useNavigation<NativeStackNavigationProp<StackProps>>()
-    const route = useRoute<RouteProp<StackProps, 'Details'>>();
+    const route = useRoute<RouteProp<StackProps, 'Details'>>().params;
 
     const [modalPayment, setModalPayment] = useState<boolean>(false)
     const [paymentSelected, setPaymentSelected] = useState<ItemsRadio>({id: -1, description: ''})
@@ -66,7 +66,7 @@ const Details: React.FC = ({}) => {
     }, [])
 
     const setInfos = () => {
-        let total = currency(route.params?.total, 2, 3, '.', ',')
+        let total = currency(route.total, 2, 3, '.', ',')
         setTotalInfo(data => ({
             ...data,
             value: total

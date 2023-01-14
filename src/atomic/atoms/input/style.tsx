@@ -1,4 +1,6 @@
 import styled from "styled-components/native";
+import { TextInputMask as InputMask } from "react-native-masked-text";
+
 import { white, gray } from "../../constants/colors";
 import { MarginsStyledProps } from "../../constants/spacing";
 import { IndexStyledProps } from "./models";
@@ -20,6 +22,15 @@ export const Main = styled.View`
 `
 
 export const TextInput = styled.TextInput.attrs({
+    placeholderTextColor: gray
+})`
+    font-family: 'LexendDeca-Regular';
+    flex: 1;
+    text-align: ${( props: IndexStyledProps ) => ( props.textAlign ?? 'left' )};
+    font-size: 21px;
+`
+
+export const TextInputMask = styled(InputMask).attrs({
     placeholderTextColor: gray
 })`
     font-family: 'LexendDeca-Regular';

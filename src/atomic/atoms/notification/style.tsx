@@ -1,7 +1,9 @@
 import styled from "styled-components/native";
+
 import { shadow } from "../../constants/box";
 import { borderRadius } from "../../constants/button";
 import { primary, secondary, warning } from "../../constants/colors";
+import { MarginsStyledProps } from "../../constants/spacing";
 
 import { IndexStyledProps } from "./models";
 
