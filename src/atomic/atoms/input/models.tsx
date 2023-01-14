@@ -1,3 +1,4 @@
+import { KeyboardType } from "react-native";
 import { StyledProps } from "styled-components";
 import { Margins } from "../../constants/spacing";
 import { TextAlign } from "../../constants/text";
@@ -8,6 +9,7 @@ export interface IndexProps extends Margins {
     onChangeText: (value: string) => void;
     placeholder: string;
     textAlign?: TextAlign;
+    keyboardType?: KeyboardType | 'money'
 }
 
 export type IndexStyledProps = StyledProps<IndexProps>
