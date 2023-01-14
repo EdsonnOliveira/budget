@@ -16,21 +16,6 @@ import { ItemType, PaymentTypes } from "../../constants/types";
 
 import View from "./view";
 
-const Products: ItemType[] = [
-    {
-        sequence: 2,
-        name: 'Nutella',
-        value: '17,00',
-        barCode: '1'
-    },
-    {
-        sequence: 1,
-        name: 'KitKat',
-        value: '3,00',
-        barCode: '2'
-    },
-]
-
 const Payments: ItemsRadio[] = [
     {
         id: 0,
@@ -56,6 +41,8 @@ const Details: React.FC = ({}) => {
     const [modalItem, setModalItem] = useState<boolean>(false);
     const [itemSelected, setItemSelected] = useState<number>(-1)
 
+    const [products, setProducts] = useState<ItemType[]>([])
+
     const [paymentInfo, setPaymentInfo] = useState<ItemsList>({title: 'Pagamento', value: 'Dinheiro'})
     const [descountInfo, setDescountInfo] = useState<ItemsList>({title: 'Desconto', value: 'R$ 0,00'})
     const [subtotalInfo, setSubtotalInfo] = useState<ItemsList>({title: 'Subtotal', value: 'R$ 0,00'})
@@ -66,6 +53,19 @@ const Details: React.FC = ({}) => {
     }, [])
 
     const setInfos = () => {
+        let items: ItemType[] = []
+        route.items.map((item) => {
+            let json: ItemType = {
+                sequence: String(item?.sequence),
+                name: String(item?.name),
+                value: String(item?.price),
+                barCode: String(item?.barCode)
+            }
+            items.push(json)
+        })
+
+        setProducts(items)
+
         let total = currency(route.total, 2, 3, '.', ',')
         setTotalInfo(data => ({
             ...data,
@@ -89,7 +89,7 @@ const Details: React.FC = ({}) => {
                 <Header title='Novo Orçamento' />
                 <View
                     total={totalInfo.value}
-                    products={Products}
+                    products={products}
                     setModalPayment={setModalPayment}
                     paymentSelected={paymentSelected}
                     setModalItem={setModalItem}

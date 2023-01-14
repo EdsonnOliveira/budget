@@ -50,6 +50,36 @@ const listAll = () => {
     })
 }
 
+const select = (obj: Models) => {
+    return new Promise<Models>((resolve, reject) => {
+        db.transaction((tx: Transaction) => {
+            tx.executeSql(
+                `
+                    SELECT
+                        *
+                    FROM
+                        Products
+                    WHERE
+                        BarCode = ?
+                `,
+                [obj.barCode],
+                (tx: Transaction, result: ResultSet) => {
+                    if (result.rows.length > 0) {
+                        let json: Products = {
+                            id: result.rows.item(0).ID,
+                            name: result.rows.item(0).Name,
+                            price: String(result.rows.item(0).Price).replace(',', '.'),
+                            barCode: result.rows.item(0).BarCode,
+                            qt: result.rows.item(0).QT,
+                        }
+                        resolve(json)
+                    } else reject(result)
+                }
+            )
+        })
+    })
+}
+
 const insert = (obj: Models) => {
     return new Promise<Models>((resolve, reject) => {
         db.transaction((tx: Transaction) => {
@@ -106,6 +136,7 @@ const del = (obj: Models) => {
 
 export default {
     listAll,
+    select,
     insert,
     update,
     del

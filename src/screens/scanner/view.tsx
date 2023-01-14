@@ -23,6 +23,7 @@ import Notification from "../../atomic/atoms/notification";
 
 const View: React.FC<ViewProps> = ({
     mode,
+    items,
     total,
     quantity,
     navigation,
@@ -50,6 +51,7 @@ const View: React.FC<ViewProps> = ({
                         setBarCode={setBarCode}
                         productAdded={productAdded}
                         addProductScanning={addProductScanning}
+                        items={items}
                         total={total}
                         quantity={quantity}
                     />
@@ -70,6 +72,7 @@ const ModeCamera: React.FC<CameraProps> = ({
     setBarCode,
     productAdded,
     addProductScanning,
+    items,
     quantity,
     total
 }) => {
@@ -132,7 +135,7 @@ const ModeCamera: React.FC<CameraProps> = ({
                     text={Arrow}
                     onPress={() => {
                         setFlashMode('off')
-                        navigation.navigate('Details', { total })
+                        navigation.navigate('Details', { total, items })
                     }}
                     tag={String(quantity)}
                     mr='-10px'

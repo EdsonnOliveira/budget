@@ -17,6 +17,7 @@ export interface CameraProps {
     productAdded: boolean;
     addProductScanning: () => void
 
+    items: ScannedProductProps[];
     quantity: number;
     total: number;
 }
@@ -31,7 +32,7 @@ export type ScannedProductProps = {
     sequence: string;
     name: string;
     barCode: string;
-    price: number;
+    price: string | number;
 } | null
 
 export type ModeScanner = 'camera' | 'manual';

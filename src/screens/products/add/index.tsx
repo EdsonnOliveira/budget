@@ -42,7 +42,7 @@ const ProductsAdd: React.FC = ({}) => {
     
     const insert = () => {
         DBProducts
-        .insert({name, price: price.replace('R$', ''), barCode})
+        .insert({name, price: price.replace('R$', '').replace(' ', ''), barCode})
         .then(() => {
             setName('')
             setPrice('')

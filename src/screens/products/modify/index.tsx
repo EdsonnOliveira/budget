@@ -51,7 +51,7 @@ const ProductsModify: React.FC = ({}) => {
 
     const update = () => {
         DBProducts
-        .update({name, price: price.replace('R$', ''), barCode, id: data?.sequence})
+        .update({name, price: price.replace('R$', '').replace(' ', ''), barCode, id: data?.sequence})
         .then(() => {
             setButtonDisabled(true)
             setNotification({title: 'Produto Alterado!', type: 'success', state: 'show'})

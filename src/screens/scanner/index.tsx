@@ -7,6 +7,7 @@ import { FlashMode } from "react-native-camera";
 import Main from "../../atomic/atoms/main";
 import Header from "../../atomic/molecules/header";
 import { StackProps } from "../../routes/models";
+import DBProducts, { Models as ModelsProducts } from '../../services/products'
 
 import { ModeScanner, ScannedProductProps } from "./models";
 import View from "./view";
@@ -22,6 +23,7 @@ const Scanner: React.FC = ({}) => {
     const [scannedProduct, setScannedProduct] = useState<ScannedProductProps>(null)
     const [productAdded, setProductAdded] = useState<boolean>(false)
 
+    const [items, setItems] = useState<ScannedProductProps[]>([])
     const [total, setTotal] = useState<number>(0)
     const [quantity, setQuantity] = useState<number>(0)
 
@@ -30,19 +32,29 @@ const Scanner: React.FC = ({}) => {
     }, [barCode])
 
     const findProduct = (barCode: string) => {
+        setScanned(false)
         if (!barCode)
             return
 
-        let product: ScannedProductProps = {
-            sequence: String(quantity + 1),
-            name: 'Remédio',
-            barCode,
-            price: 2.00
-        }
+        DBProducts
+        .select({barCode})
+        .then((data: ModelsProducts) => {
+            let array: ScannedProductProps[] = items
+            
+            let product: ScannedProductProps = {
+                sequence: String(quantity + 1),
+                name: String(data.name),
+                barCode,
+                price: Number(data.price)
+            }
 
-        setScanned(true)
-        setScannedProduct(product)
-        setTotal(total + product.price)
+            array.push(product)
+
+            setScanned(true)
+            setScannedProduct(product)
+            setItems(array)
+            setTotal(total + Number(product.price))
+        })
     }
 
     useEffect(() => {
@@ -71,6 +83,7 @@ const Scanner: React.FC = ({}) => {
                 setBarCode={setBarCode}
                 addProductScanning={addProductScanning}
                 productAdded={productAdded}
+                items={items}
                 total={total}
                 quantity={quantity}
             />
