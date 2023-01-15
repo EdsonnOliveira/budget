@@ -4,8 +4,8 @@ import { ItemsRadio } from "../../molecules/radio/models";
 
 export interface IndexProps {
     title: string;
-    description: string;
-    descriptionBold: string;
+    description?: string;
+    descriptionBold?: string;
     type: TypeModal,
     items?: ItemsRadio[] | ItemsList[];
     selectedItem?: number;
@@ -13,6 +13,7 @@ export interface IndexProps {
     visible: boolean;
     setState: (state: boolean) => void;
     buttonConfirm?: ButtonConfirm;
+    returnConfirm?: (data: string) => void;
     onShow?: () => void;
     onClose?: () => void;
 }

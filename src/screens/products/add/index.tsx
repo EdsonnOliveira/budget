@@ -76,6 +76,7 @@ const ProductsAdd: React.FC = ({}) => {
                 type='scanner'
                 visible={modalBarCode}
                 setState={setModalBarCode}
+                returnConfirm={setBarCode}
             />
             <TabBottomBar />
         </>

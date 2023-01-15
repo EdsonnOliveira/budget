@@ -23,7 +23,7 @@ export type ButtonTypes = 'primaryLarge' | 'primaryMedium' | 'primarySmall' |
             'hexagonSecundaryLarge' | 'hexagonSecundaryMedium' |
             'hexagonTertiaryLarge' | 'hexagonTertiaryMedium' |
             'hexagonGhostSolidLarge'| 'hexagonGhostSolidMedium' |
-            'hexagonGradientLarge' | 'hexagonGradientMedium' |
+            'hexagonGradientLarge' | 'hexagonGradientMedium' | 'hexagonGradientSmall' |
             'ghostSmall' |
             'ghostSolidSmall' |
             'bottomSheet'

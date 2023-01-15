@@ -13,6 +13,7 @@ const ProductModify: React.FC<ViewProps> = ({
     barCode,
     setBarCode,
     buttonDisabled,
+    setModalBarCode,
     notification,
     setModalDelete,
     update,
@@ -40,6 +41,10 @@ const ProductModify: React.FC<ViewProps> = ({
                 placeholder='Código de Barras'
                 value={barCode}
                 onChangeText={setBarCode}
+                keyboardType='number-pad'
+                actionButton={{
+                    onPress: () => setModalBarCode(true)
+                }}
                 mb='15px'
             />
             <Button

@@ -5,9 +5,10 @@ import {
     GhostSmall,
     Image,
     MarkerShadow,
-    HexagonGradientMedium,
-    GhostSolidSmall,
     HexagonGradientLarge,
+    HexagonGradientMedium,
+    HexagonGradientSmall,
+    GhostSolidSmall,
     BoxCenteredText,
     HexagonPrimaryMedium,
     HexagonGhostSolidMedium,
@@ -18,12 +19,13 @@ import {
     GradientLarge,
     GradientLargeBox,
     HexagonTertiaryMedium,
-    WarningLarge
+    WarningLarge,
 } from "./style";
 
 import HexagonPrimaryMediumImage from '../../../assets/vectors/hexagonPrimaryMedium.png'
 import HexagonGradientMediumImage from '../../../assets/vectors/hexagonGradientMedium.png'
 import HexagonGradientLargeImage from '../../../assets/vectors/hexagonGradientLarge.png'
+import HexagonGradientSmallImage from '../../../assets/vectors/hexagonGradientSmall.png'
 import HexagonTertiaryMediumImage from '../../../assets/vectors/hexagonTertiaryMedium.png'
 import HexagonGhostSolidMediumImage from '../../../assets/vectors/hexagonGhostSolidMedium.png'
 
@@ -137,6 +139,33 @@ const Button: React.FC<IndexProps> = ({
                     <Image source={text} style={{width: '100%', top: 28, position: 'absolute', zIndex: 2, resizeMode: 'contain'}} />
                     <Image source={HexagonGradientMediumImage} style={{width: '100%', height: '100%'}} />
                 </HexagonGradientMedium>
+            )
+        case 'hexagonGradientSmall':
+            return (
+                <HexagonGradientSmall onPress={onPress} mt={mt} ml={ml} mr={mr} mb={mb}>
+                    <Image source={HexagonGradientSmallImage} style={{width: '100%', height: '100%'}} />
+                    {
+                        typeof text == 'string'
+                        ? (
+                            <BoxCenteredText>
+                                <Text text={text} type='H4' color={white} mt='-5px' />
+                            </BoxCenteredText>
+                        )
+                        : (
+                            <Image
+                                source={text}
+                                style={{
+                                    width: sizeIcon?.width ? sizeIcon?.width : '100%',
+                                    height: sizeIcon?.height ? sizeIcon?.height : null,
+                                    top: sizeIcon?.top ? sizeIcon?.top : 28,
+                                    position: 'absolute',
+                                    zIndex: 2,
+                                    resizeMode: 'contain'
+                                }}
+                            />
+                        )
+                    }
+                </HexagonGradientSmall>
             )
         case 'hexagonTertiaryMedium':
             return (

@@ -144,6 +144,16 @@ export const HexagonGradientMedium = styled.TouchableOpacity`
     margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
 `
 
+export const HexagonGradientSmall = styled.TouchableOpacity`
+    width: 90px;
+    height: 85px;
+
+    margin-top: ${( props: MarginsStyledProps ) => (props.mt ?? 0)};
+    margin-left: ${( props: MarginsStyledProps ) => (props.ml ?? 0)};
+    margin-right: ${( props: MarginsStyledProps ) => (props.mr ?? 0)};
+    margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
+`
+
 export const HexagonTertiaryMedium = styled.TouchableOpacity`
     width: 100px;
     height: 90px;

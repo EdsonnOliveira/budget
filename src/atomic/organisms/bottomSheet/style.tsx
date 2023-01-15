@@ -1,3 +1,4 @@
+import { RNCamera } from "react-native-camera";
 import styled from "styled-components/native";
 import { shadow } from "../../constants/box";
 import { blackOpacity, grey, white } from "../../constants/colors";
@@ -61,6 +62,24 @@ export const ButtonCloseImg = styled.Image`
 
 export const Body = styled.View`
     flex: 1;
+`
+
+export const Scanner = styled(RNCamera)`
+    flex: 1;
+    height: 250px;
+`
+
+export const ScannerMain = styled.View`
+    flex: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    position: absolute;
 `
 
 export const Footer = styled.View`

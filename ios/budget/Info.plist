@@ -43,7 +43,6 @@
 	<string>O Aplicativo precisará do acesso a câmera para leitura de Código de Barras</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string></string>
 		<string>LexendDeca-Black.ttf</string>
 		<string>LexendDeca-Bold.ttf</string>
 		<string>LexendDeca-ExtraBold.ttf</string>

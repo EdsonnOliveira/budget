@@ -22,6 +22,7 @@ const ProductsModify: React.FC = ({}) => {
     const [barCode, setBarCode] = useState<string>(data?.barCode)
 
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(false)
+    const [modalBarCode, setModalBarCode] = useState<boolean>(false)
     const [notification, setNotification] = useState<NotificationProps>({title: '', type: 'warning', state: 'hide'})
     const [modalDelete, setModalDelete] = useState<boolean>(false)
 
@@ -82,6 +83,7 @@ const ProductsModify: React.FC = ({}) => {
                     barCode={barCode}
                     setBarCode={setBarCode}
                     buttonDisabled={buttonDisabled}
+                    setModalBarCode={setModalBarCode}
                     notification={notification}
                     setModalDelete={setModalDelete}
                     update={update}
@@ -100,6 +102,13 @@ const ProductsModify: React.FC = ({}) => {
                     text: 'Excluir',
                     onPress: del
                 }}
+            />
+            <BottomSheet
+                title='Ler código de barras'
+                type='scanner'
+                visible={modalBarCode}
+                setState={setModalBarCode}
+                returnConfirm={setBarCode}
             />
             <TabBottomBar />
         </>

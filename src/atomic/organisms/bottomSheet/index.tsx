@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { RNCamera } from "react-native-camera";
+import BarcodeMask from "react-native-barcode-mask";
+
 import Text from "../../atoms/text";
-
-import { IndexProps } from "./models";
-import { Backdrop, ButtonClose, Header, Main, ButtonCloseImg, Body, BoxModal, Footer } from "./style";
-
 import CloseImg from '../../../assets/icons/x.png'
 import Radio from "../../molecules/radio";
 import { ItemsRadio } from "../../molecules/radio/models";
 import List from "../../molecules/list";
 import Button from "../../atoms/button";
 import BoxCommon from "../../atoms/boxes/boxCommon";
+
+import { IndexProps } from "./models";
+import { Backdrop, ButtonClose, Header, Main, ButtonCloseImg, Body, BoxModal, Footer, Scanner, ScannerMain } from "./style";
+import { white } from "../../constants/colors";
 
 const BottomSheet: React.FC<IndexProps> = ({
     title,
@@ -22,10 +26,13 @@ const BottomSheet: React.FC<IndexProps> = ({
     visible,
     setState,
     buttonConfirm,
+    returnConfirm,
     onShow,
     onClose,
 }) => {
     if (!visible) return <></>
+
+    const [barCode, setBarCode] = useState<string>('')
 
     return (
         <BoxModal
@@ -71,7 +78,27 @@ const BottomSheet: React.FC<IndexProps> = ({
                     }
                     {
                         type == 'scanner' && (
-                            <></>
+                            <Scanner
+                                captureAudio={false}
+                                type={RNCamera.Constants.Type.back}
+                                onBarCodeRead={({data}) => setBarCode(data)}
+                            >
+                                <ScannerMain>
+                                    <Text type='H2' weight='400' align='center' text={barCode} color={white} />
+                                    <Button type='hexagonGradientSmall' text='Ok' onPress={() => {
+                                        returnConfirm(barCode)
+                                        setState(false)
+                                    }} />
+                                </ScannerMain>
+                                <BarcodeMask
+                                    width={200}
+                                    height={70}
+                                    edgeWidth={0}
+                                    edgeBorderWidth={0}
+                                    outerMaskOpacity={0.4}
+                                    edgeRadius={7}
+                                />
+                            </Scanner>
                         )
                     }
                 </Body>
