@@ -1,4 +1,5 @@
 import { NotificationProps } from "../../../atomic/atoms/notification/models";
+import { ModalType } from "../../../constants/types";
 
 export interface ViewProps {
     name: string;
@@ -8,6 +9,7 @@ export interface ViewProps {
     barCode: string;
     setBarCode: (text: string) => void;
     buttonDisabled: boolean;
+    setModalBarCode: ModalType;
     notification: NotificationProps;
     insert: () => void;
 }

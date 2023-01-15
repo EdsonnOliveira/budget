@@ -80,6 +80,7 @@ const Scanner: React.FC = ({}) => {
                 setFlashMode={setFlashMode}
                 scanned={scanned}
                 scannedProduct={scannedProduct}
+                barCode={barCode}
                 setBarCode={setBarCode}
                 addProductScanning={addProductScanning}
                 productAdded={productAdded}

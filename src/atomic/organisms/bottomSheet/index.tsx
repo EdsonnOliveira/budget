@@ -69,6 +69,11 @@ const BottomSheet: React.FC<IndexProps> = ({
                             </BoxCommon>
                         )
                     }
+                    {
+                        type == 'scanner' && (
+                            <></>
+                        )
+                    }
                 </Body>
                 {
                     buttonConfirm && (

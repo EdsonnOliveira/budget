@@ -15,6 +15,7 @@ const ProductAdd: React.FC<ViewProps> = ({
     barCode,
     setBarCode,
     buttonDisabled,
+    setModalBarCode,
     notification,
     insert
 }) => {
@@ -41,6 +42,9 @@ const ProductAdd: React.FC<ViewProps> = ({
                 value={barCode}
                 onChangeText={setBarCode}
                 keyboardType='number-pad'
+                actionButton={{
+                    onPress: () => setModalBarCode(true)
+                }}
                 mb='15px'
             />
             <Button

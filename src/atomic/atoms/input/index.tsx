@@ -1,7 +1,7 @@
 import React from "react";
 
 import { IndexProps } from "./models";
-import { Main, TextInput, TextInputMask } from "./style";
+import { Button, Main, TextInput, TextInputMask } from "./style";
 
 const Input: React.FC<IndexProps> = ({
     width,
@@ -9,6 +9,7 @@ const Input: React.FC<IndexProps> = ({
     onChangeText,
     placeholder,
     keyboardType = 'default',
+    actionButton,
     mt,
     ml,
     mr,
@@ -39,6 +40,15 @@ const Input: React.FC<IndexProps> = ({
                         placeholder={placeholder}
                         keyboardType={keyboardType}
                     />
+                )
+            }
+            {
+                actionButton && (
+                    <Button
+                        onPress={actionButton.onPress}
+                    >
+
+                    </Button>
                 )
             }
         </Main>

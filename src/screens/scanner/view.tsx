@@ -32,6 +32,7 @@ const View: React.FC<ViewProps> = ({
     setFlashMode,
     scanned,
     scannedProduct,
+    barCode,
     setBarCode,
     productAdded,
     addProductScanning
@@ -56,7 +57,21 @@ const View: React.FC<ViewProps> = ({
                         quantity={quantity}
                     />
                 )
-                : <ModeManual setMode={setMode} navigation={navigation} quantity={quantity} />
+                : (
+                    <ModeManual
+                        setMode={setMode}
+                        navigation={navigation}
+                        scanned={scanned}
+                        scannedProduct={scannedProduct}
+                        barCode={barCode}
+                        setBarCode={setBarCode}
+                        productAdded={productAdded}
+                        addProductScanning={addProductScanning}
+                        items={items}
+                        total={total}
+                        quantity={quantity}
+                    />
+                )
             }
         </Container>
     )
@@ -148,10 +163,28 @@ const ModeCamera: React.FC<CameraProps> = ({
 const ModeManual: React.FC<ManualProps> = ({
     setMode,
     navigation,
-    quantity
+    scanned,
+    scannedProduct,
+    barCode,
+    setBarCode,
+    productAdded,
+    addProductScanning,
+    items,
+    quantity,
+    total
 }) => {
     return (
-        <>
+        <BoxCommon
+            alignItems='center'
+            justifyContent='space-between'
+            width={`${screenWidth}px`}
+            height={`${screenHeight}px`}
+            top='-120px'
+            pt='120px'
+            pl='20px'
+            pr='20px'
+            pb='70px'
+        >
             <BoxCommon alignItems='center'>
                 <Button
                     type='ghostSolidSmall'
@@ -159,22 +192,53 @@ const ModeManual: React.FC<ManualProps> = ({
                     icon={Camera}
                     sizeIcon={{width: '20px', height: '20px'}}
                     onPress={() => setMode('camera')}
+                    mb='30px'
                 />
-                {/* <BoxCard
-                    title='Nutella'
-                    subtitle='R$ 20,00'
-                    tag={{type: 'rectangle', value: '3'}}
-                    mt='30px'
-                /> */}
+                {
+                    productAdded && (
+                        <Notification
+                            title='Produto adicionado!'
+                            type='success'
+                        />
+                    )
+                }
             </BoxCommon>
-            <Input placeholder='Digite o código de barras' />
+            <Input
+                width='80%'
+                placeholder='Código de Barras'
+                value={barCode}
+                onChangeText={setBarCode}
+                keyboardType='number-pad'
+                mb='15px'
+            />
+            {
+                scanned && (
+                    <BoxCard
+                        title={String(scannedProduct?.name)}
+                        subtitle={`R$ ${scannedProduct?.price}`}
+                        tag={{type: 'rectangle', value: String(scannedProduct?.sequence)}}
+                        mt='310px'
+                    />
+                )
+            }
             <BoxColumn justifyContent='space-between' alignItems='center'>
                 <BoxCommon alignItems='center' flex>
-                    <Button type='hexagonGradientLarge' text='Ok' onPress={() => null} ml='90px' />
+                    <Button
+                        type='hexagonGradientLarge'
+                        text='Ok'
+                        onPress={addProductScanning}
+                        ml='90px'
+                    />
                 </BoxCommon>
-                <Button type='hexagonPrimaryMedium' text={Arrow} onPress={() => navigation.navigate('Details')} tag={String(quantity)} mr='-10px' />
+                <Button
+                    type='hexagonPrimaryMedium'
+                    text={Arrow}
+                    onPress={() => navigation.navigate('Details', { total, items })}
+                    tag={String(quantity)}
+                    mr='-10px'
+                />
             </BoxColumn>
-        </>
+        </BoxCommon>
     )
 }
 

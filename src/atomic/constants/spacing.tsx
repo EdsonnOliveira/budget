@@ -15,14 +15,14 @@ export type MarginsStyledProps = StyledProps<{
 }>
 
 export interface Padding {
-    pd?: string | number;
+    pt?: string | number;
     pl?: string | number;
     pr?: string | number;
     pb?: string | number;
 }
 
 export type PaddingsStyledProps = StyledProps<{
-    pd?: string | number;
+    pt?: string | number;
     pl?: string | number;
     pr?: string | number;
     pb?: string | number;

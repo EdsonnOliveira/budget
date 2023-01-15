@@ -10,6 +10,11 @@ export interface IndexProps extends Margins {
     placeholder: string;
     textAlign?: TextAlign;
     keyboardType?: KeyboardType | 'money'
+    actionButton?: Button | undefined;
+}
+
+type Button = {
+    onPress?: () => void;
 }
 
 export type IndexStyledProps = StyledProps<IndexProps>

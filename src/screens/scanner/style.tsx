@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { screenHeight, screenWidth } from "../../atomic/constants/dimension";
 
 export const Scanner = styled(RNCamera)`
-    width: ${screenWidth};
-    height: ${screenHeight};
+    width: ${screenWidth}px;
+    height: ${screenHeight}px;
     justify-content: space-between;
     align-items: center;
     position: absolute;

@@ -17,7 +17,7 @@ export interface IndexProps {
     onClose?: () => void;
 }
 
-type TypeModal = 'radio' | 'question' | 'list';
+type TypeModal = 'radio' | 'question' | 'list' | 'scanner';
 type ButtonConfirm = {
     type: ButtonTypes;
     text: string;

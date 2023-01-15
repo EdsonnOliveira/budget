@@ -72,7 +72,7 @@ const ProductsModify: React.FC = ({}) => {
     
     return (
         <>
-            <Main>
+            <Main statusBar={{ barStyle: 'dark-content' }}>
                 <Header title='Alterar produto' />
                 <View
                     name={name}

@@ -25,7 +25,16 @@ export interface CameraProps {
 export interface ManualProps {
     setMode: (mode: ModeScanner) => void;
     navigation: NativeStackNavigationProp<StackProps>;
+    scanned: boolean;
+    scannedProduct: ScannedProductProps;
+    barCode: string;
+    setBarCode: (bar: string) => void;
+    productAdded: boolean;
+    addProductScanning: () => void
+
+    items: ScannedProductProps[];
     quantity: number;
+    total: number;
 }
 
 export type ScannedProductProps = {

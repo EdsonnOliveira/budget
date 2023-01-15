@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { AlignmentsStyledProps } from "../../../constants/align";
-import { MarginsStyledProps } from "../../../constants/spacing";
+import { MarginsStyledProps, PaddingsStyledProps, PositionStyledProps } from "../../../constants/spacing";
 import { IndexStyledProps } from "./models";
 
 const BoxCommon = styled.View`
@@ -16,6 +16,16 @@ const BoxCommon = styled.View`
     margin-left: ${( props: MarginsStyledProps ) => (props.ml ?? 0)};
     margin-right: ${( props: MarginsStyledProps ) => (props.mr ?? 0)};
     margin-bottom: ${( props: MarginsStyledProps ) => (props.mb ?? 0)};
+
+    padding-top: ${( props: PaddingsStyledProps ) => (props.pt ?? 0)};
+    padding-left: ${( props: PaddingsStyledProps ) => (props.pl ?? 0)};
+    padding-right: ${( props: PaddingsStyledProps ) => (props.pr ?? 0)};
+    padding-bottom: ${( props: PaddingsStyledProps ) => (props.pb ?? 0)};
+
+    top: ${( props: PositionStyledProps ) => (props.top ?? 0)};
+    left: ${( props: PositionStyledProps ) => (props.left ?? 0)};
+    right: ${( props: PositionStyledProps ) => (props.right ?? 0)};
+    bottom: ${( props: PositionStyledProps ) => (props.bottom ?? 0)};
 `
 
 export default BoxCommon;

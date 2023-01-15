@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Main from "../../../atomic/atoms/main";
 import { NotificationProps } from "../../../atomic/atoms/notification/models";
 import Header from "../../../atomic/molecules/header";
+import BottomSheet from "../../../atomic/organisms/bottomSheet";
 import TabBottomBar from "../../../atomic/organisms/tabBottomBar";
 
 import DBProducts from '../../../services/products'
@@ -15,6 +16,7 @@ const ProductsAdd: React.FC = ({}) => {
     const [barCode, setBarCode] = useState<string>('')
 
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(false)
+    const [modalBarCode, setModalBarCode] = useState<boolean>(false)
     const [notification, setNotification] = useState<NotificationProps>({title: '', type: 'warning', state: 'hide'})
 
     useEffect(() => {
@@ -54,7 +56,7 @@ const ProductsAdd: React.FC = ({}) => {
 
     return (
         <>
-            <Main>
+            <Main statusBar={{ barStyle: 'dark-content' }}>
                 <Header title='Adicionar produto' />
                 <View
                     name={name}
@@ -64,10 +66,17 @@ const ProductsAdd: React.FC = ({}) => {
                     barCode={barCode}
                     setBarCode={setBarCode}
                     buttonDisabled={buttonDisabled}
+                    setModalBarCode={setModalBarCode}
                     notification={notification}
                     insert={insert}
                 />
             </Main>
+            <BottomSheet
+                title='Ler código de barras'
+                type='scanner'
+                visible={modalBarCode}
+                setState={setModalBarCode}
+            />
             <TabBottomBar />
         </>
     )
