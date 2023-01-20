@@ -4,8 +4,8 @@ import { IndexProps as TagProps } from "../../tag/models";
 
 export interface IndexProps extends Margins {
     title: string;
-    subtitle: string;
-    tag: TagProps
+    subtitle?: string;
+    tag?: TagProps
 }
 
 export type IndexStyledProps = StyledProps<IndexProps>
