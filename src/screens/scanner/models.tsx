@@ -12,6 +12,7 @@ export interface CameraProps {
     flashMode: keyof FlashMode
     setFlashMode: (mode: keyof FlashMode) => void;
     scanned: boolean;
+    scannedError: boolean;
     scannedProduct: ScannedProductProps;
     setBarCode: (bar: string) => void;
     productAdded: boolean;
@@ -26,6 +27,7 @@ export interface ManualProps {
     setMode: (mode: ModeScanner) => void;
     navigation: NativeStackNavigationProp<StackProps>;
     scanned: boolean;
+    scannedError: boolean;
     scannedProduct: ScannedProductProps;
     barCode: string;
     setBarCode: (bar: string) => void;

@@ -31,6 +31,7 @@ const View: React.FC<ViewProps> = ({
     flashMode,
     setFlashMode,
     scanned,
+    scannedError,
     scannedProduct,
     barCode,
     setBarCode,
@@ -48,6 +49,7 @@ const View: React.FC<ViewProps> = ({
                         flashMode={flashMode}
                         setFlashMode={setFlashMode}
                         scanned={scanned}
+                        scannedError={scannedError}
                         scannedProduct={scannedProduct}
                         setBarCode={setBarCode}
                         productAdded={productAdded}
@@ -83,6 +85,7 @@ const ModeCamera: React.FC<CameraProps> = ({
     flashMode,
     setFlashMode,
     scanned,
+    scannedError,
     scannedProduct,
     setBarCode,
     productAdded,
@@ -123,11 +126,19 @@ const ModeCamera: React.FC<CameraProps> = ({
                 }
             </BoxCommon>
             {
-                scanned && (
+                scanned && scannedError == false && (
                     <BoxCard
                         title={String(scannedProduct?.name)}
                         subtitle={`R$ ${scannedProduct?.price}`}
                         tag={{type: 'rectangle', value: String(scannedProduct?.sequence)}}
+                        mt='310px'
+                    />
+                )
+            }
+            {
+                scannedError && (
+                    <BoxCard
+                        title='Produto não encontrado'
                         mt='310px'
                     />
                 )
@@ -145,16 +156,22 @@ const ModeCamera: React.FC<CameraProps> = ({
                     onPress={addProductScanning}
                     ml='5px'
                 />
-                <Button
-                    type='hexagonPrimaryMedium'
-                    text={Arrow}
-                    onPress={() => {
-                        setFlashMode('off')
-                        navigation.navigate('Details', { total, items })
-                    }}
-                    tag={String(quantity)}
-                    mr='-10px'
-                />
+                {
+                    String(quantity) != '0' ? (
+                        <Button
+                            type='hexagonPrimaryMedium'
+                            text={Arrow}
+                            onPress={() => {
+                                setFlashMode('off')
+                                navigation.navigate('Details', { total, items })
+                            }}
+                            tag={String(quantity)}
+                            mr='-10px'
+                        />
+                    ) : (
+                        <Button text='' onPress={() => null} type='ghostSmall' ml='50px' />
+                    )
+                }
             </BoxColumn>
         </Scanner>
     )
@@ -164,6 +181,7 @@ const ModeManual: React.FC<ManualProps> = ({
     setMode,
     navigation,
     scanned,
+    scannedError,
     scannedProduct,
     barCode,
     setBarCode,
@@ -230,13 +248,19 @@ const ModeManual: React.FC<ManualProps> = ({
                         ml='90px'
                     />
                 </BoxCommon>
-                <Button
-                    type='hexagonPrimaryMedium'
-                    text={Arrow}
-                    onPress={() => navigation.navigate('Details', { total, items })}
-                    tag={String(quantity)}
-                    mr='-10px'
-                />
+                {
+                    String(quantity) != '0' ? (
+                        <Button
+                            type='hexagonPrimaryMedium'
+                            text={Arrow}
+                            onPress={() => navigation.navigate('Details', { total, items })}
+                            tag={String(quantity)}
+                            mr='-10px'
+                        />
+                    ) : (
+                        <Button text='' onPress={() => null} type='ghostSmall' ml='50px' />
+                    )
+                }
             </BoxColumn>
         </BoxCommon>
     )

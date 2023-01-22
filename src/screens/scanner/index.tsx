@@ -19,6 +19,7 @@ const Scanner: React.FC = ({}) => {
     const [flashMode, setFlashMode] = useState<keyof FlashMode>('off' || 'torch')
 
     const [scanned, setScanned] = useState<boolean>(false)
+    const [scannedError, setScannedError] = useState<boolean>(false)
     const [barCode, setBarCode] = useState<string>('')
     const [scannedProduct, setScannedProduct] = useState<ScannedProductProps>(null)
     const [productAdded, setProductAdded] = useState<boolean>(false)
@@ -51,10 +52,12 @@ const Scanner: React.FC = ({}) => {
             array.push(product)
 
             setScanned(true)
+            setScannedError(false)
             setScannedProduct(product)
             setItems(array)
             setTotal(total + Number(product.price))
         })
+        .catch(() => setScannedError(true))
     }
 
     useEffect(() => {
@@ -64,6 +67,8 @@ const Scanner: React.FC = ({}) => {
     }, [productAdded])
 
     const addProductScanning = () => {
+        if (!scanned)
+            return
         setScanned(false)
         setProductAdded(true)
         setQuantity(quantity+1)
@@ -79,6 +84,7 @@ const Scanner: React.FC = ({}) => {
                 flashMode={flashMode}
                 setFlashMode={setFlashMode}
                 scanned={scanned}
+                scannedError={scannedError}
                 scannedProduct={scannedProduct}
                 barCode={barCode}
                 setBarCode={setBarCode}
