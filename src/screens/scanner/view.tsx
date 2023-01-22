@@ -64,6 +64,7 @@ const View: React.FC<ViewProps> = ({
                         setMode={setMode}
                         navigation={navigation}
                         scanned={scanned}
+                        scannedError={scannedError}
                         scannedProduct={scannedProduct}
                         barCode={barCode}
                         setBarCode={setBarCode}
@@ -230,11 +231,19 @@ const ModeManual: React.FC<ManualProps> = ({
                 mb='15px'
             />
             {
-                scanned && (
+                scanned && scannedError == false && (
                     <BoxCard
                         title={String(scannedProduct?.name)}
                         subtitle={`R$ ${scannedProduct?.price}`}
                         tag={{type: 'rectangle', value: String(scannedProduct?.sequence)}}
+                        mt='310px'
+                    />
+                )
+            }
+            {
+                scannedError && (
+                    <BoxCard
+                        title='Produto não encontrado'
                         mt='310px'
                     />
                 )
