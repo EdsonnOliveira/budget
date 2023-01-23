@@ -1,6 +1,6 @@
 import { ResultSet, Transaction } from "react-native-sqlite-storage";
 import db from "../database";
-import { Products } from "./models";
+import Products from "./models";
 
 export interface Models extends Products {}
 
@@ -31,9 +31,9 @@ const listAll = () => {
                 [],
                 (tx: Transaction, result: ResultSet) => {
                     if (result.rows.length > 0) {
-                        var array: Products[] = []
+                        var array: Models[] = []
                         for (let i = 0; i < result.rows.length; i++) {
-                            let json: Products = {
+                            let json: Models = {
                                 id: result.rows.item(i).ID,
                                 name: result.rows.item(i).Name,
                                 price: String(result.rows.item(i).Price).replace(',', '.'),
@@ -65,7 +65,7 @@ const select = (obj: Models) => {
                 [obj.barCode],
                 (tx: Transaction, result: ResultSet) => {
                     if (result.rows.length > 0) {
-                        let json: Products = {
+                        let json: Models = {
                             id: result.rows.item(0).ID,
                             name: result.rows.item(0).Name,
                             price: String(result.rows.item(0).Price).replace(',', '.'),
