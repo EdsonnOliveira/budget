@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -30,6 +30,7 @@ const Products: React.FC = ({}) => {
             let items: ItemType[] = []
             value.map((item) => {
                 let json: ItemType = {
+                    id: String(item.id),
                     sequence: String(item.id),
                     name: String(item.name),
                     value: String(item.price),

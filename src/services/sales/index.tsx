@@ -30,13 +30,16 @@ const listAll = () => {
                         *
                     FROM
                         Sales
+                    WHERE
+                        Situation <> ?
                 `,
-                [],
+                ['1'],
                 (tx: Transaction, result: ResultSet) => {
                     if (result.rows.length > 0) {
                         var array: Models[] = []
                         for (let i = 0; i < result.rows.length; i++) {
                             let json: Models = {
+                                id: result.rows.item(i).ID,
                                 idPayment: result.rows.item(i).IDPayment,
                                 descount: String(result.rows.item(i).Descount).replace(',', '.'),
                                 subTotal: String(result.rows.item(i).SubTotal).replace(',', '.'),

@@ -9,12 +9,14 @@ import View from "./view";
 
 const Products: ItemType[] = [
     {
+        id: 2,
         sequence: 2,
         name: 'Nutella',
         value: '17,00',
         barCode: '1'
     },
     {
+        id: 1,
         sequence: 1,
         name: 'KitKat',
         value: '3,00',

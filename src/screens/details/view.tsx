@@ -16,6 +16,7 @@ const View: React.FC<ViewProps> = ({
     paymentSelected,
     setModalItem,
     setItemSelected,
+    setItemSelectedSeq,
     disabledFinish,
     finishSale
 }) => {
@@ -35,7 +36,8 @@ const View: React.FC<ViewProps> = ({
                 data={products}
                 onPress={(data, index) => {
                     setModalItem(true)
-                    setItemSelected(Number(data.sequence))
+                    setItemSelected(Number(data.id))
+                    setItemSelectedSeq(Number(data.sequence))
                 }}
             />
             <BoxCommon alignItems='center' width='100%' mt='20px' mb='10px'>

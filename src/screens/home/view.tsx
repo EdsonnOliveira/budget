@@ -13,7 +13,8 @@ import Text from "../../atomic/atoms/text";
 import { ViewProps } from "./models";
 
 const View: React.FC<ViewProps> = ({
-    history
+    history,
+    navigation,
 }) => {
     return (
         <Container>
@@ -33,6 +34,7 @@ const View: React.FC<ViewProps> = ({
                             value={`R$ ${item.value}`}
                             ml={index % 2 == 0 ? 0 : '10px'}
                             mr={index % 2 == 0 ? '10px' : 0}
+                            onPress={() => navigation.navigate('Details', { idSale: item.sequence })}
                         />
                     )
                 }

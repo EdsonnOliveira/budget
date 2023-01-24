@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { FlashMode } from "react-native-camera";
 
@@ -78,10 +78,6 @@ const Scanner: React.FC = ({}) => {
     const addProductScanning = () => {
         if (!scanned)
             return
-
-        // DBSales
-        // .del({id: '1'})
-        // return
 
         DBSales
         .findOpened()

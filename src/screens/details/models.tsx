@@ -8,6 +8,7 @@ export interface ViewProps {
     paymentSelected: ItemsRadio;
     setModalItem: ModalType;
     setItemSelected: (item: number) => void;
+    setItemSelectedSeq: (item: number) => void;
     disabledFinish: boolean;
     finishSale: () => void;
 }

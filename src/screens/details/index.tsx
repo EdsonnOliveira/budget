@@ -14,6 +14,7 @@ import BottomSheet from "../../atomic/organisms/bottomSheet";
 import TabBottomBar from "../../atomic/organisms/tabBottomBar";
 import { ItemType, PaymentTypes } from "../../constants/types";
 
+import DBSales from '../../services/sales'
 import DBSalesItems, { Models as ModelsSalesItems } from '../../services/sales/items'
 
 import View from "./view";
@@ -41,9 +42,10 @@ const Details: React.FC = ({}) => {
     const [paymentSelected, setPaymentSelected] = useState<ItemsRadio>({id: -1, description: ''})
 
     const [modalItem, setModalItem] = useState<boolean>(false);
+    const [itemSelectedSeq, setItemSelectedSeq] = useState<number>(-1)
     const [itemSelected, setItemSelected] = useState<number>(-1)
 
-    const [products, setProducts] = useState<ItemType[]>([])
+    const [products, setProducts] = useState<ItemType[] | null>([])
 
     const [paymentInfo, setPaymentInfo] = useState<ItemsList>({title: 'Pagamento', value: 'Dinheiro'})
     const [descountInfo, setDescountInfo] = useState<ItemsList>({title: 'Desconto', value: 'R$ 0,00'})
@@ -62,15 +64,20 @@ const Details: React.FC = ({}) => {
         .then((data: ModelsSalesItems[]) => {
             data.map((item) => {
                 let json: ItemType = {
+                    id: String(item?.id),
                     sequence: String(item?.sequence),
                     name: String(item?.name),
                     value: String(item?.priceTotal),
                     barCode: String(item?.barCode)
                 }
+                
                 items.push(json)
             })
 
             setProducts(items)
+        })
+        .catch(() => {
+            setProducts(null)
         })
 
         DBSalesItems
@@ -89,10 +96,47 @@ const Details: React.FC = ({}) => {
         setPaymentInfo({title: 'Pagamento', value: paymentSelected.description})
     }, [paymentSelected.description])
 
+    const delItem = () => {
+        DBSalesItems
+        .del({ id: String(itemSelected) })
+        .then(() => {
+            setModalItem(false)
+            setInfos()
+        })
+    }
+
     const [modalFinish, setModalFinish] = useState<boolean>(false)
 
     const finishSale = () => {
         setModalFinish(true)
+    }
+
+    const finish = () => {
+        let idPayment;
+        switch (paymentInfo.value) {
+            case PaymentTypes.credit:
+                idPayment = 2
+                break;
+            case PaymentTypes.debit:
+                idPayment = 3
+                break;
+            default:
+                idPayment = 1
+        }
+
+        DBSales
+        .update({
+            idPayment,
+            descount: String(descountInfo),
+            subTotal: String(subtotalInfo),
+            total: String(totalInfo),
+            situation: 2,
+            id: route.idSale
+        })
+        .then(() => {
+            setModalFinish(false)
+            navigation.navigate('DetailsFinished');
+        })
     }
 
     return (
@@ -106,6 +150,7 @@ const Details: React.FC = ({}) => {
                     paymentSelected={paymentSelected}
                     setModalItem={setModalItem}
                     setItemSelected={setItemSelected}
+                    setItemSelectedSeq={setItemSelectedSeq}
                     disabledFinish={paymentSelected.id != -1 ? false : true}
                     finishSale={finishSale}
                 />
@@ -134,23 +179,20 @@ const Details: React.FC = ({}) => {
                 buttonConfirm={{
                     type: 'gradientLarge',
                     text: 'Finalizar',
-                    onPress: () => {
-                        setModalFinish(false)
-                        navigation.navigate('DetailsFinished');
-                    }
+                    onPress: finish
                 }}
             />
             <BottomSheet
                 title='Excluir item'
                 description={'Tem certeza que deseja\nexcluir o'}
-                descriptionBold={`Item ${itemSelected}?`}
+                descriptionBold={`Item ${itemSelectedSeq}?`}
                 type='question'
                 visible={modalItem}
                 setState={setModalItem}
                 buttonConfirm={{
                     type: 'warningLarge',
                     text: 'Excluir',
-                    onPress: () => null
+                    onPress: delItem
                 }}
             />
         </>

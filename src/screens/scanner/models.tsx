@@ -18,7 +18,7 @@ export interface CameraProps {
     productAdded: boolean;
     addProductScanning: () => void
 
-    idSale: string;
+    idSale: number;
     quantity: number;
 }
 
