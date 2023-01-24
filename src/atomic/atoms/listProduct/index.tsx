@@ -1,7 +1,9 @@
 import React from "react";
 import { FlatList } from "react-native";
+
 import BoxMiddle from "../boxes/boxMiddle";
 import { Separator } from "../boxes/separator";
+
 import { IndexProps } from "./models";
 
 const ListProduct: React.FC<IndexProps> = ({
