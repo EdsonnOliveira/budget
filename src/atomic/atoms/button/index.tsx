@@ -210,7 +210,7 @@ const Button: React.FC<IndexProps> = ({
             )
         case 'bottomSheet':
             return (
-                <BottomSheet onPress={onPress}>
+                <BottomSheet onPress={onPress} disabled={disabled}>
                     <Text text={text.toString()} type='H4' align='center' />
                 </BottomSheet>
             )
