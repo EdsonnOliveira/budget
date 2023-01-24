@@ -5,8 +5,7 @@ export type StackProps = {
     Home: undefined;
     Scanner: undefined;
     Details: {
-        total: number;
-        items: ScannedProductProps[]
+        idSale: string;
     };
     DetailsModify: {
         data: undefined

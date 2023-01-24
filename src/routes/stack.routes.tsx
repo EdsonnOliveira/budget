@@ -29,7 +29,7 @@ const AppRoutes: React.FC = () => (
 
         <stackRoutes.Screen name='Scanner' component={Scanner} options={{ gestureEnabled: true }} />
 
-        <stackRoutes.Screen name='Details' component={Details} options={{ gestureEnabled: false }} />
+        <stackRoutes.Screen name='Details' component={Details} options={{ gestureEnabled: true }} />
         <stackRoutes.Screen name='DetailsModify' component={DetailsModify} options={{ gestureEnabled: true }} />
         <stackRoutes.Screen name='DetailsFinished' component={Finished} options={{ gestureEnabled: false }} />
 
