@@ -70,6 +70,9 @@ const Details: React.FC = ({}) => {
         .findOne({ id: String(route.idSale) })
         .then((data: ModelsSales) => {
             setData(data)
+            if (data.situation == 1)
+                return
+            
             setPaymentSelected({
                 id: Number(data.idPayment),
                 description: data.idPayment == 1

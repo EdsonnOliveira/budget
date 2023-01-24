@@ -31,7 +31,7 @@ const View: React.FC<ViewProps> = ({
                         ? `Selecionar a forma\nde pagamento`
                         : `Pagamento selecionado: ${paymentSelected.description}`}
                 onPress={() => setModalPayment(true)}
-                disabled
+                disabled={data?.situation != 1 ? true : false }
             />
             <Text text='Itens' type='H2' mt='25px' mb='10px' />
             <ListProduct
