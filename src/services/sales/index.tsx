@@ -55,15 +55,50 @@ const listAll = () => {
     })
 }
 
-const insert = (obj: Models) => {
+const findOpened = () => {
     return new Promise<Models>((resolve, reject) => {
         db.transaction((tx: Transaction) => {
             tx.executeSql(
                 `
-                    INSERT INTO Sales (IDPayment, Descount, SubTotal, Total, Date, Time, Situation)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    SELECT
+                        *
+                    FROM
+                        Sales
+                    WHERE
+                        Situation = ?
+                    LIMIT
+                        1
                 `,
-                [obj.idPayment, obj.descount, obj.subTotal, obj.total, obj.date, obj.time, obj.situation],
+                ['1'],
+                (tx: Transaction, result: ResultSet) => {
+                    if (result.rows.length > 0) {
+                        let json: Models = {
+                            id: result.rows.item(0).ID,
+                            idPayment: result.rows.item(0).IDPayment,
+                            descount: String(result.rows.item(0).Descount).replace(',', '.'),
+                            subTotal: String(result.rows.item(0).SubTotal).replace(',', '.'),
+                            total: String(result.rows.item(0).Total).replace(',', '.'),
+                            date: result.rows.item(0).Date,
+                            time: result.rows.item(0).Time,
+                            situation: result.rows.item(0).Situation,
+                        }
+                        resolve(json)
+                    } else reject(result)
+                }
+            )
+        })
+    })
+}
+
+const insert = (obj: Models) => {
+    return new Promise<string>((resolve, reject) => {
+        db.transaction((tx: Transaction) => {
+            tx.executeSql(
+                `
+                    INSERT INTO Sales (Date, Time, Situation)
+                    VALUES (?, ?, ?)
+                `,
+                [obj.date, obj.time, '1'],
                 (_: any, { rowsAffected, insertId }: any) => {
                     if (rowsAffected > 0) resolve(insertId)
                     else reject('Error inserting obj: ' + JSON.stringify(obj))
@@ -81,6 +116,7 @@ const update = (obj: Models) => {
                     UPDATE Sales
                     SET IDPayment = ?, Descount = ?, SubTotal = ?, Total = ?, Situation = ?
                     WHERE ID = ?
+                    LIMIT 1
                 `,
                 [obj.idPayment, obj.descount, obj.subTotal, obj.total, obj.situation, obj.id],
                 (_: any, { rowsAffected, insertId }: any) => {
@@ -100,8 +136,9 @@ const del = (obj: Models) => {
                     UPDATE Sales
                     SET Situation = ?
                     WHERE ID = ?
+                    LIMIT 1
                 `,
-                ['2', obj.id],
+                ['3', obj.id],
                 (_: any, { rowsAffected, insertId }: any) => {
                     if (rowsAffected > 0) resolve(insertId)
                     else reject('Error updating obj: ' + JSON.stringify(obj))
@@ -113,6 +150,7 @@ const del = (obj: Models) => {
 
 export default {
     listAll,
+    findOpened,
     insert,
     update,
     del

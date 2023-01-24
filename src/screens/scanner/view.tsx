@@ -23,8 +23,7 @@ import Notification from "../../atomic/atoms/notification";
 
 const View: React.FC<ViewProps> = ({
     mode,
-    items,
-    total,
+    idSale,
     quantity,
     navigation,
     setMode,
@@ -54,8 +53,7 @@ const View: React.FC<ViewProps> = ({
                         setBarCode={setBarCode}
                         productAdded={productAdded}
                         addProductScanning={addProductScanning}
-                        items={items}
-                        total={total}
+                        idSale={idSale}
                         quantity={quantity}
                     />
                 )
@@ -70,8 +68,7 @@ const View: React.FC<ViewProps> = ({
                         setBarCode={setBarCode}
                         productAdded={productAdded}
                         addProductScanning={addProductScanning}
-                        items={items}
-                        total={total}
+                        idSale={idSale}
                         quantity={quantity}
                     />
                 )
@@ -91,9 +88,8 @@ const ModeCamera: React.FC<CameraProps> = ({
     setBarCode,
     productAdded,
     addProductScanning,
-    items,
+    idSale,
     quantity,
-    total
 }) => {
     return (
         <Scanner
@@ -164,7 +160,7 @@ const ModeCamera: React.FC<CameraProps> = ({
                             text={Arrow}
                             onPress={() => {
                                 setFlashMode('off')
-                                navigation.navigate('Details', { total, items })
+                                navigation.navigate('Details', { idSale })
                             }}
                             tag={String(quantity)}
                             mr='-10px'
@@ -188,9 +184,8 @@ const ModeManual: React.FC<ManualProps> = ({
     setBarCode,
     productAdded,
     addProductScanning,
-    items,
+    idSale,
     quantity,
-    total
 }) => {
     return (
         <BoxCommon
@@ -262,7 +257,7 @@ const ModeManual: React.FC<ManualProps> = ({
                         <Button
                             type='hexagonPrimaryMedium'
                             text={Arrow}
-                            onPress={() => navigation.navigate('Details', { total, items })}
+                            onPress={() => navigation.navigate('Details', { idSale })}
                             tag={String(quantity)}
                             mr='-10px'
                         />

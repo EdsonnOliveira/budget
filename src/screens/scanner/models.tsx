@@ -18,9 +18,8 @@ export interface CameraProps {
     productAdded: boolean;
     addProductScanning: () => void
 
-    items: ScannedProductProps[];
+    idSale: string;
     quantity: number;
-    total: number;
 }
 
 export interface ManualProps {
@@ -34,9 +33,8 @@ export interface ManualProps {
     productAdded: boolean;
     addProductScanning: () => void
 
-    items: ScannedProductProps[];
+    idSale: string;
     quantity: number;
-    total: number;
 }
 
 export type ScannedProductProps = {

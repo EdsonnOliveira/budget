@@ -31,11 +31,14 @@ const View: React.FC<ViewProps> = ({
                 onPress={() => setModalPayment(true)}
             />
             <Text text='Itens' type='H2' mt='25px' mb='10px' />
-            <ListProduct data={products} onPress={(data, index) => {
-                setModalItem(true)
-                setItemSelected(data.sequence)
-            }} />
-            <BoxCommon alignItems='center' width='100%'>
+            <ListProduct
+                data={products}
+                onPress={(data, index) => {
+                    setModalItem(true)
+                    setItemSelected(Number(data.sequence))
+                }}
+            />
+            <BoxCommon alignItems='center' width='100%' mt='20px' mb='10px'>
                 <Button
                     type='primaryLarge'
                     text='Finalizar'

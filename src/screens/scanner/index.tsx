@@ -7,7 +7,10 @@ import { FlashMode } from "react-native-camera";
 import Main from "../../atomic/atoms/main";
 import Header from "../../atomic/molecules/header";
 import { StackProps } from "../../routes/models";
+
 import DBProducts, { Models as ModelsProducts } from '../../services/products'
+import DBSales, { Models as ModelsSales } from '../../services/sales'
+import DBSalesItems, { Models as ModelsSalesItems } from '../../services/sales/items'
 
 import { ModeScanner, ScannedProductProps } from "./models";
 import View from "./view";
@@ -24,12 +27,13 @@ const Scanner: React.FC = ({}) => {
     const [scannedProduct, setScannedProduct] = useState<ScannedProductProps>(null)
     const [productAdded, setProductAdded] = useState<boolean>(false)
 
+    const [idSale, setIdSale] = useState<number>(0)
     const [items, setItems] = useState<ScannedProductProps[]>([])
-    const [total, setTotal] = useState<number>(0)
     const [quantity, setQuantity] = useState<number>(0)
 
     useEffect(() => {
         findProduct(barCode)
+        setInfos()
     }, [barCode])
 
     const findProduct = (barCode: string) => {
@@ -40,8 +44,6 @@ const Scanner: React.FC = ({}) => {
         DBProducts
         .select({barCode})
         .then((data: ModelsProducts) => {
-            let array: ScannedProductProps[] = items
-            
             let product: ScannedProductProps = {
                 sequence: String(quantity + 1),
                 name: String(data.name),
@@ -49,15 +51,22 @@ const Scanner: React.FC = ({}) => {
                 price: Number(data.price)
             }
 
-            array.push(product)
-
             setScanned(true)
             setScannedError(false)
             setScannedProduct(product)
-            setItems(array)
-            setTotal(total + Number(product.price))
         })
         .catch(() => setScannedError(true))
+    }
+
+    const setInfos = () => {
+        DBSales
+        .findOpened()
+        .then((data: ModelsSales) => {
+            setIdSale(Number(data.id))
+            DBSalesItems
+            .findValues({idSale: data.id})
+            .then((data: ModelsSalesItems) => setQuantity(Number(data.qt)))
+        })
     }
 
     useEffect(() => {
@@ -69,9 +78,55 @@ const Scanner: React.FC = ({}) => {
     const addProductScanning = () => {
         if (!scanned)
             return
+
+        // DBSales
+        // .del({id: '1'})
+        // return
+
+        DBSales
+        .findOpened()
+        .then((data: ModelsSales) => insertItem(String(data.id)))
+        .catch(() => {
+            let date = new Date();
+            let currentDate = `${date.getDate()}/${String(date.getMonth()+1).padStart(2, '0')}/${date.getFullYear()}`
+            let currentTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+
+            DBSales
+            .insert({date: currentDate, time: currentTime})
+            .then((data: string) => {
+                insertItem(data)
+                console.log(`Inserted: ${data}`)
+            })
+        })
+
         setScanned(false)
         setProductAdded(true)
         setQuantity(quantity+1)
+    }
+
+    const insertItem = (idSale: string) => {
+        DBSalesItems
+        .insert({
+            idSale,
+            sequence: String(quantity + 1),
+            name: scannedProduct?.name,
+            priceUnit: String(scannedProduct?.price),
+            priceTotal: String(scannedProduct?.price),
+            barCode,
+            qt: '1'
+        })
+        .then(() => {
+            let array: ScannedProductProps[] = items
+            let product: ScannedProductProps = {
+                sequence: String(quantity + 1),
+                name: String(scannedProduct?.name),
+                barCode,
+                price: Number(scannedProduct?.price)
+            }
+
+            array.push(product)
+            setItems(array)
+        })
     }
 
     return (
@@ -90,8 +145,7 @@ const Scanner: React.FC = ({}) => {
                 setBarCode={setBarCode}
                 addProductScanning={addProductScanning}
                 productAdded={productAdded}
-                items={items}
-                total={total}
+                idSale={idSale}
                 quantity={quantity}
             />
         </Main>

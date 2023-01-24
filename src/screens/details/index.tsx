@@ -14,6 +14,8 @@ import BottomSheet from "../../atomic/organisms/bottomSheet";
 import TabBottomBar from "../../atomic/organisms/tabBottomBar";
 import { ItemType, PaymentTypes } from "../../constants/types";
 
+import DBSalesItems, { Models as ModelsSalesItems } from '../../services/sales/items'
+
 import View from "./view";
 
 const Payments: ItemsRadio[] = [
@@ -54,23 +56,33 @@ const Details: React.FC = ({}) => {
 
     const setInfos = () => {
         let items: ItemType[] = []
-        route.items.map((item) => {
-            let json: ItemType = {
-                sequence: String(item?.sequence),
-                name: String(item?.name),
-                value: String(item?.price),
-                barCode: String(item?.barCode)
-            }
-            items.push(json)
+
+        DBSalesItems
+        .listAll({idSale: route.idSale})
+        .then((data: ModelsSalesItems[]) => {
+            data.map((item) => {
+                let json: ItemType = {
+                    sequence: String(item?.sequence),
+                    name: String(item?.name),
+                    value: String(item?.priceTotal),
+                    barCode: String(item?.barCode)
+                }
+                items.push(json)
+            })
+
+            setProducts(items)
         })
 
-        setProducts(items)
-
-        let total = currency(route.total, 2, 3, '.', ',')
-        setTotalInfo(data => ({
-            ...data,
-            value: total
-        }))
+        DBSalesItems
+        .findValues({idSale: route.idSale})
+        .then((data: ModelsSalesItems) => {
+            let total = currency(Number(data.priceTotal), 2, 3, '.', ',')
+            setTotalInfo(data => ({
+                ...data,
+                value: total
+            }))
+        })
+        
     }
 
     useEffect(() => {

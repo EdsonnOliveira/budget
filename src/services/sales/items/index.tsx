@@ -57,8 +57,38 @@ const listAll = (obj: Models) => {
     })
 }
 
-const insert = (obj: Models) => {
+const findValues = (obj: Models) => {
     return new Promise<Models>((resolve, reject) => {
+        db.transaction((tx: Transaction) => {
+            tx.executeSql(
+                `
+                    SELECT
+                        sum(qt) as QT,
+                        sum(priceTotal) as PriceTotal
+                    FROM
+                        SalesItems
+                    WHERE
+                        IDSale = ?
+                `,
+                [obj.idSale],
+                (tx: Transaction, result: ResultSet) => {
+                    if (result.rows.length > 0) {
+                        let json: Models = {
+                            qt: result.rows.item(0).QT,
+                            priceTotal: result.rows.item(0).PriceTotal,
+                        }
+
+                        resolve(json)
+                    }
+                    else reject(result)
+                }
+            )
+        })
+    })
+}
+
+const insert = (obj: Models) => {
+    return new Promise<string>((resolve, reject) => {
         db.transaction((tx: Transaction) => {
             tx.executeSql(
                 `
@@ -113,6 +143,7 @@ const del = (obj: Models) => {
 
 export default {
     listAll,
+    findValues,
     insert,
     update,
     del
