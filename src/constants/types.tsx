@@ -11,6 +11,7 @@ export interface BudgetType {
 }
 
 export interface ItemType {
+    id: string | number;
     sequence: string | number;
     name: string;
     value: string;
