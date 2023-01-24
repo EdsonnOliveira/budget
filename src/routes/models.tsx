@@ -5,7 +5,7 @@ export type StackProps = {
     Home: undefined;
     Scanner: undefined;
     Details: {
-        idSale: string;
+        idSale: number | string;
     };
     DetailsModify: {
         data: undefined
