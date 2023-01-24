@@ -7,7 +7,6 @@ import Scanner from '../screens/scanner';
 
 import Details from '../screens/details';
 import Finished from '../screens/details/finish';
-import DetailsModify from '../screens/details/modify';
 
 import Products from '../screens/products';
 import ProductsAdd from '../screens/products/add';
@@ -30,7 +29,6 @@ const AppRoutes: React.FC = () => (
         <stackRoutes.Screen name='Scanner' component={Scanner} options={{ gestureEnabled: true }} />
 
         <stackRoutes.Screen name='Details' component={Details} options={{ gestureEnabled: true }} />
-        <stackRoutes.Screen name='DetailsModify' component={DetailsModify} options={{ gestureEnabled: true }} />
         <stackRoutes.Screen name='DetailsFinished' component={Finished} options={{ gestureEnabled: false }} />
 
         <stackRoutes.Screen name='Products' component={Products} options={{ gestureEnabled: false }} />

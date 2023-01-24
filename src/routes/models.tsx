@@ -7,9 +7,6 @@ export type StackProps = {
     Details: {
         idSale: number | string;
     };
-    DetailsModify: {
-        data: undefined
-    };
     DetailsFinished: undefined;
     Products: undefined;
     ProductsAdd: undefined;
