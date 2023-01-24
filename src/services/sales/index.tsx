@@ -93,6 +93,41 @@ const findOpened = () => {
     })
 }
 
+const findOne = (obj: Models) => {
+    return new Promise<Models>((resolve, reject) => {
+        db.transaction((tx: Transaction) => {
+            tx.executeSql(
+                `
+                    SELECT
+                        *
+                    FROM
+                        Sales
+                    WHERE
+                        ID = ?
+                    LIMIT
+                        1
+                `,
+                [obj.id],
+                (tx: Transaction, result: ResultSet) => {
+                    if (result.rows.length > 0) {
+                        let json: Models = {
+                            id: result.rows.item(0).ID,
+                            idPayment: result.rows.item(0).IDPayment,
+                            descount: String(result.rows.item(0).Descount).replace(',', '.'),
+                            subTotal: String(result.rows.item(0).SubTotal).replace(',', '.'),
+                            total: String(result.rows.item(0).Total).replace(',', '.'),
+                            date: result.rows.item(0).Date,
+                            time: result.rows.item(0).Time,
+                            situation: result.rows.item(0).Situation,
+                        }
+                        resolve(json)
+                    } else reject(result)
+                }
+            )
+        })
+    })
+}
+
 const insert = (obj: Models) => {
     return new Promise<string>((resolve, reject) => {
         db.transaction((tx: Transaction) => {
@@ -154,6 +189,7 @@ const del = (obj: Models) => {
 export default {
     listAll,
     findOpened,
+    findOne,
     insert,
     update,
     del

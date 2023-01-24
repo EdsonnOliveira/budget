@@ -14,7 +14,7 @@ import BottomSheet from "../../atomic/organisms/bottomSheet";
 import TabBottomBar from "../../atomic/organisms/tabBottomBar";
 import { ItemType, PaymentTypes } from "../../constants/types";
 
-import DBSales from '../../services/sales'
+import DBSales, { Models as ModelsSales } from '../../services/sales'
 import DBSalesItems, { Models as ModelsSalesItems } from '../../services/sales/items'
 
 import View from "./view";
@@ -38,6 +38,8 @@ const Details: React.FC = ({}) => {
     const navigation = useNavigation<NativeStackNavigationProp<StackProps>>()
     const route = useRoute<RouteProp<StackProps, 'Details'>>().params;
 
+    const [data, setData] = useState<ModelsSales | null>()
+
     const [modalPayment, setModalPayment] = useState<boolean>(false)
     const [paymentSelected, setPaymentSelected] = useState<ItemsRadio>({id: -1, description: ''})
 
@@ -54,13 +56,34 @@ const Details: React.FC = ({}) => {
 
     useEffect(() => {
         setInfos()
-    }, [])
+    }, [route])
 
     const setInfos = () => {
+        setData(null)
+        setProducts(null)
+        setTotalInfo(data => ({
+            ...data,
+            value: '0,00'
+        }))
+
+        DBSales
+        .findOne({ id: String(route.idSale) })
+        .then((data: ModelsSales) => {
+            setData(data)
+            setPaymentSelected({
+                id: Number(data.idPayment),
+                description: data.idPayment == 1
+                                ? 'Dinheiro'
+                                : data.idPayment == 2
+                                ? 'Crédito'
+                                : 'Débito'
+            })
+        })
+
         let items: ItemType[] = []
 
         DBSalesItems
-        .listAll({idSale: route.idSale})
+        .listAll({idSale: String(route.idSale)})
         .then((data: ModelsSalesItems[]) => {
             data.map((item) => {
                 let json: ItemType = {
@@ -81,12 +104,18 @@ const Details: React.FC = ({}) => {
         })
 
         DBSalesItems
-        .findValues({idSale: route.idSale})
+        .findValues({idSale: String(route.idSale)})
         .then((data: ModelsSalesItems) => {
             let total = currency(Number(data.priceTotal), 2, 3, '.', ',')
             setTotalInfo(data => ({
                 ...data,
                 value: total
+            }))
+        })
+        .catch(() => {
+            setTotalInfo(data => ({
+                ...data,
+                value: '0,00'
             }))
         })
         
@@ -131,7 +160,7 @@ const Details: React.FC = ({}) => {
             subTotal: String(subtotalInfo),
             total: String(totalInfo),
             situation: 2,
-            id: route.idSale
+            id: String(route.idSale)
         })
         .then(() => {
             setModalFinish(false)
@@ -142,8 +171,9 @@ const Details: React.FC = ({}) => {
     return (
         <>
             <Main statusBar={{ barStyle: 'dark-content' }}>
-                <Header title='Novo Orçamento' />
+                <Header title={data?.situation == 1 ? 'Novo Orçamento' : 'Visualizar Orçamento' } />
                 <View
+                    data={data}
                     total={totalInfo.value}
                     products={products}
                     setModalPayment={setModalPayment}
