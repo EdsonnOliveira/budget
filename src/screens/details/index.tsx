@@ -159,9 +159,9 @@ const Details: React.FC = ({}) => {
         DBSales
         .update({
             idPayment,
-            descount: String(descountInfo),
-            subTotal: String(subtotalInfo),
-            total: String(totalInfo),
+            descount: String(descountInfo.value),
+            subTotal: String(subtotalInfo.value),
+            total: String(totalInfo.value),
             situation: 2,
             id: String(route.idSale)
         })

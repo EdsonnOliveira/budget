@@ -9,7 +9,7 @@ import TabBottomBar from '../../atomic/organisms/tabBottomBar';
 import DBSales, { Models as ModelsSales } from '../../services/sales'
 
 import View from './view'
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackProps } from '../../routes/models';
 
@@ -71,9 +71,9 @@ const Home: React.FC = ({}) => {
 
     const [items, setItems] = useState<BudgetType[] | null>(null)
 
-    useEffect(() => {
+    useFocusEffect(() => {
         listAll();
-    }, [])
+    })
 
     const listAll = () => {
         let items: BudgetType[] = []
