@@ -73,7 +73,11 @@ const Home: React.FC = ({}) => {
     return (
         <>
             <Main statusBar={{ doNotShow: true, barStyle: 'light-content' }}>
-                <BoxValue type='big' label='Hoje' value={currency(Number(soldToday), 2, 3, '.', ',')} />
+                <BoxValue
+                    type='big'
+                    label='Hoje'
+                    value={currency(Number(soldToday) || 0, 2, 3, '.', ',')}
+                />
                 <View
                     navigation={navigation}
                     history={items}
