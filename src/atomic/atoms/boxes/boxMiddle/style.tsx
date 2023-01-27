@@ -22,8 +22,8 @@ export const Main = styled.TouchableOpacity`
 `
 
 export const BoxIcon = styled.View`
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     border-radius: 10px;
     background-color: ${secondary};
     justify-content: center;
