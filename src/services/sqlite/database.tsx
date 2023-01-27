@@ -4,7 +4,7 @@ var db = SQLite.openDatabase(
     {
         name: 'Budget',
         location: 'default',
-        createFromLocation: 1
+        // createFromLocation: 1
     },
     () => {},
     error => { console.log(error) }
