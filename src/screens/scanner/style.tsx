@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { screenHeight, screenWidth } from "../../atomic/constants/dimension";
 
 export const Scanner = styled(RNCamera)`
+    flex: 1;
     width: ${screenWidth}px;
     height: ${screenHeight}px;
     justify-content: space-between;
