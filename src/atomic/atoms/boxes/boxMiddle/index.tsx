@@ -11,6 +11,7 @@ const BoxMiddle: React.FC<Model> = ({
     title,
     value,
     onPress,
+    onLongPress,
     mt,
     ml,
     mr,
@@ -19,6 +20,7 @@ const BoxMiddle: React.FC<Model> = ({
     return (
         <Main
             onPress={onPress}
+            onLongPress={onLongPress}
             activeOpacity={onPress ? 0.3 : 1}
             mt={mt} ml={ml} mr={mr} mb={mb}
         >

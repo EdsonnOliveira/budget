@@ -6,4 +6,5 @@ export default interface Model extends Margins {
     title: string;
     value: string;
     onPress?: () => void;
+    onLongPress?: () => void;
 }

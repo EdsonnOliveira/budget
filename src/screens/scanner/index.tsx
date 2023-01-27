@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Vibration } from "react-native";
 
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { FlashMode } from "react-native-camera";
 
@@ -45,6 +46,7 @@ const Scanner: React.FC = ({}) => {
         DBProducts
         .select({barCode})
         .then((data: ModelsProducts) => {
+            Vibration.vibrate()
             let product: ScannedProductProps = {
                 sequence: String(quantity + 1),
                 name: String(data.name),
