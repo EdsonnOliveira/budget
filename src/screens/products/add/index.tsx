@@ -6,7 +6,7 @@ import Header from "../../../atomic/molecules/header";
 import BottomSheet from "../../../atomic/organisms/bottomSheet";
 import TabBottomBar from "../../../atomic/organisms/tabBottomBar";
 
-import DBProducts from '../../../services/products'
+import DBProducts from '../../../services/sqlite/products'
 
 import View from "./view";
 

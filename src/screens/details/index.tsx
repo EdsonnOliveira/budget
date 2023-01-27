@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import { State as ValueTypes, Creators as ValueActions } from '../../services/redux/ducks/value';
+
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
@@ -14,10 +16,13 @@ import BottomSheet from "../../atomic/organisms/bottomSheet";
 import TabBottomBar from "../../atomic/organisms/tabBottomBar";
 import { ItemType, PaymentTypes } from "../../constants/types";
 
-import DBSales, { Models as ModelsSales } from '../../services/sales'
-import DBSalesItems, { Models as ModelsSalesItems } from '../../services/sales/items'
+import DBSales, { Models as ModelsSales } from '../../services/sqlite/sales'
+import DBSalesItems, { Models as ModelsSalesItems } from '../../services/sqlite/sales/items'
 
 import View from "./view";
+import { connect } from "react-redux";
+import { bindActionCreators, Dispatch } from "redux";
+import { IndexProps } from "./models";
 
 const Payments: ItemsRadio[] = [
     {
@@ -34,7 +39,9 @@ const Payments: ItemsRadio[] = [
     }
 ]
 
-const Details: React.FC = ({}) => {
+const Details: React.FC<IndexProps> = ({
+    setValueSoldToday
+}) => {
     const navigation = useNavigation<NativeStackNavigationProp<StackProps>>()
     const route = useRoute<RouteProp<StackProps, 'Details'>>().params;
 
@@ -164,6 +171,18 @@ const Details: React.FC = ({}) => {
             id: String(route.idSale)
         })
         .then(() => {
+            let date = new Date();
+            let currentDate = `${date.getDate()}/${String(date.getMonth()+1).padStart(2, '0')}/${date.getFullYear()}`
+
+            let today = 0;
+
+            DBSales
+            .findValues({date: currentDate})
+            .then((data: ModelsSales[]) => {
+                data.map((item) => today += Number(item.total))
+                setValueSoldToday(String(today))
+            })
+
             setModalFinish(false)
             navigation.navigate('DetailsFinished');
         })
@@ -230,4 +249,15 @@ const Details: React.FC = ({}) => {
     )
 }
 
-export default Details;
+const mapStateToProps = () => ({})
+
+const mapDispatchProps = (dispatch: Dispatch) => {
+    return bindActionCreators (
+        {
+            ...ValueActions
+        },
+        dispatch
+    )
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(Details);

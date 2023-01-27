@@ -31,6 +31,7 @@ target 'budget' do
   pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
   pod 'Permission-PhotoLibraryAddOnly', :path => "#{permissions_path}/PhotoLibraryAddOnly"
   pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways"
+  pod 'react-native-sqlite-storage', :path => '../node_modules/react-native-sqlite-storage'
   # pod 'react-native-camera', path: '../node_modules/react-native-camera'
 
   target 'budgetTests' do

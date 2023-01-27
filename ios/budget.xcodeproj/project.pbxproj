@@ -318,15 +318,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-budget/Pods-budget-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"$(SRCROOT)/react-native-camera/react_native_camera.framework",
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-budget/Pods-budget-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/react_native_camera.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

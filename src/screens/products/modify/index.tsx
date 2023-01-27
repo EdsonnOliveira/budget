@@ -8,7 +8,7 @@ import Header from "../../../atomic/molecules/header";
 import TabBottomBar from "../../../atomic/organisms/tabBottomBar";
 import { StackProps } from "../../../routes/models";
 import { NotificationProps } from "../../../atomic/atoms/notification/models";
-import DBProducts from '../../../services/products'
+import DBProducts from '../../../services/sqlite/products'
 
 import View from "./view";
 import BottomSheet from "../../../atomic/organisms/bottomSheet";

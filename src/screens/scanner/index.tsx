@@ -8,9 +8,9 @@ import Main from "../../atomic/atoms/main";
 import Header from "../../atomic/molecules/header";
 import { StackProps } from "../../routes/models";
 
-import DBProducts, { Models as ModelsProducts } from '../../services/products'
-import DBSales, { Models as ModelsSales } from '../../services/sales'
-import DBSalesItems, { Models as ModelsSalesItems } from '../../services/sales/items'
+import DBProducts, { Models as ModelsProducts } from '../../services/sqlite/products'
+import DBSales, { Models as ModelsSales } from '../../services/sqlite/sales'
+import DBSalesItems, { Models as ModelsSalesItems } from '../../services/sqlite/sales/items'
 
 import { ModeScanner, ScannedProductProps } from "./models";
 import View from "./view";

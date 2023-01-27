@@ -10,7 +10,7 @@ import Main from "../../atomic/atoms/main";
 import Header from "../../atomic/molecules/header";
 import TabBottomBar from "../../atomic/organisms/tabBottomBar";
 
-import DBProducts, { Models as ModelsProducts } from '../../services/products'
+import DBProducts, { Models as ModelsProducts } from '../../services/sqlite/products'
 
 import View from "./view";
 
@@ -39,9 +39,6 @@ const Products: React.FC = ({}) => {
                 items.push(json)
             })
             setItem(items)
-        })
-        .catch((value: any) => {
-            console.warn(value)
         })
     }
 

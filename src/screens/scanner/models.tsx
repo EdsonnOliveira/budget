@@ -33,7 +33,7 @@ export interface ManualProps {
     productAdded: boolean;
     addProductScanning: () => void
 
-    idSale: string;
+    idSale: number;
     quantity: number;
 }
 

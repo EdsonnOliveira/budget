@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+
+import { State as ValueTypes, Creators as ValueActions } from '../../services/redux/ducks/value';
 
 import { BudgetType, PaymentTypes } from '../../constants/types';
+import { currency } from '../../constants/formats';
 
 import Main from '../../atomic/atoms/main';
 import BoxValue from '../../atomic/molecules/boxValue';
@@ -10,12 +15,17 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackProps } from '../../routes/models';
 
-import DBSales, { Models as ModelsSales } from '../../services/sales'
+import DBSales, { Models as ModelsSales } from '../../services/sqlite/sales'
 
+import Button from '../../atomic/atoms/button';
+
+import { IndexProps } from './models';
 import View from './view'
-import { currency } from '../../constants/formats';
 
-const Home: React.FC = ({}) => {
+const Home: React.FC<IndexProps> = ({
+    valueSoldToday,
+    setValueSoldToday,
+}) => {
     const navigation = useNavigation<NativeStackNavigationProp<StackProps>>()
 
     const [soldToday, setSoldToday] = useState<string>('0,00')
@@ -29,7 +39,7 @@ const Home: React.FC = ({}) => {
 
     useEffect(() => {
         listValues()
-    }, [])
+    }, [valueSoldToday])
 
     const listValues = () => {
         let date = new Date();
@@ -40,10 +50,9 @@ const Home: React.FC = ({}) => {
         DBSales
         .findValues({date: currentDate})
         .then((data: ModelsSales[]) => {
-            data.map((item) => {
-                today += Number(item.total)
-            })
+            data.map((item) => today += Number(item.total))
             setSoldToday(String(today))
+            setValueSoldToday(String(today))
         })
     }
 
@@ -90,4 +99,21 @@ const Home: React.FC = ({}) => {
     )
 }
 
-export default Home;
+const mapStateToProps = ({
+    valueReducer
+}: {
+    valueReducer: ValueTypes
+}) => ({
+    valueSoldToday: valueReducer.valueSoldToday
+})
+
+const mapDispatchProps = (dispatch: Dispatch) => {
+    return bindActionCreators (
+        {
+            ...ValueActions
+        },
+        dispatch
+    )
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(Home);
