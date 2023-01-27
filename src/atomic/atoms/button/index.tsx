@@ -43,6 +43,7 @@ const Button: React.FC<IndexProps> = ({
     flex,
     sizeIcon,
     disabled,
+    selected,
     mt,
     ml,
     mr,
@@ -210,8 +211,8 @@ const Button: React.FC<IndexProps> = ({
             )
         case 'bottomSheet':
             return (
-                <BottomSheet onPress={onPress} disabled={disabled}>
-                    <Text text={text.toString()} type='H4' align='center' />
+                <BottomSheet onPress={onPress} disabled={disabled} selected={selected}>
+                    <Text text={text.toString()} type={!selected ? 'H4' : 'H3'} align='center' color={!selected ? black : white} />
                 </BottomSheet>
             )
     }

@@ -205,7 +205,7 @@ export const GhostSolidSmall = styled.TouchableOpacity`
 export const BottomSheet = styled.TouchableOpacity`
     width: 100%;
     height: 90px;
-    background-color: ${grey};
+    background-color: ${( props: IndexStyledProps ) => (props.selected ? `${secondary}` : `${grey}`)};
     border-radius: ${borderRadius};
     justify-content: center;
     align-items: center;

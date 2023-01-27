@@ -29,14 +29,15 @@ const View: React.FC<ViewProps> = ({
                 type='bottomSheet'
                 text={paymentSelected.id == -1
                         ? `Selecionar a forma\nde pagamento`
-                        : `Pagamento selecionado: ${paymentSelected.description}`}
+                        : paymentSelected.description}
                 onPress={() => setModalPayment(true)}
                 disabled={data?.situation != 1 ? true : false }
+                selected={paymentSelected.id != -1}
             />
             <Text text='Itens' type='H2' mt='25px' mb='10px' />
             <ListProduct
                 data={products}
-                onPress={(item, index) => {
+                onLongPress={(item, index) => {
                     if (data?.situation != 1)
                         return
                         

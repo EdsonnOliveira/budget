@@ -12,6 +12,7 @@ export default interface IndexProps extends Margins {
     flex?: boolean;
     sizeIcon?: Dimension;
     disabled?: boolean
+    selected?: boolean
 }
 
 export type ButtonTypes = 'primaryLarge' | 'primaryMedium' | 'primarySmall' |
@@ -31,6 +32,7 @@ export type ButtonTypes = 'primaryLarge' | 'primaryMedium' | 'primarySmall' |
 export type IndexStyledProps = StyledProps<{
     flex?: boolean;
     sizeIcon?: Dimension;
+    selected?: boolean;
     disabled?: boolean
 }>
 
