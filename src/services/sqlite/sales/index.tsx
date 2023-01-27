@@ -207,7 +207,6 @@ const del = (obj: Models) => {
                     UPDATE Sales
                     SET Situation = ?
                     WHERE ID = ?
-                    LIMIT 1
                 `,
                 ['3', obj.id],
                 (_: any, { rowsAffected, insertId }: any) => {
