@@ -4,6 +4,7 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { FlashMode } from "react-native-camera";
 
+import { white } from "../../atomic/constants/colors";
 import Main from "../../atomic/atoms/main";
 import Header from "../../atomic/molecules/header";
 import { StackProps } from "../../routes/models";
@@ -126,7 +127,7 @@ const Scanner: React.FC = ({}) => {
     }
 
     return (
-        <Main statusBar={{ barStyle: 'dark-content' }} noMargin bgColor="#282E36">
+        <Main statusBar={{ barStyle: 'dark-content', bgColor: white }} noMargin bgColor="#282E36">
             <Header title='Escanear Produto' />
             <View
                 mode={mode}

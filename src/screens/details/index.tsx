@@ -7,6 +7,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { currency } from "../../constants/formats";
 import { StackProps } from "../../routes/models";
+import { white } from "../../atomic/constants/colors";
 
 import Main from "../../atomic/atoms/main";
 import Header from "../../atomic/molecules/header";
@@ -19,10 +20,11 @@ import { ItemType, PaymentTypes } from "../../constants/types";
 import DBSales, { Models as ModelsSales } from '../../services/sqlite/sales'
 import DBSalesItems, { Models as ModelsSalesItems } from '../../services/sqlite/sales/items'
 
-import View from "./view";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { IndexProps } from "./models";
+
+import View from "./view";
 
 const Payments: ItemsRadio[] = [
     {
@@ -190,7 +192,7 @@ const Details: React.FC<IndexProps> = ({
 
     return (
         <>
-            <Main statusBar={{ barStyle: 'dark-content' }}>
+            <Main statusBar={{ barStyle: 'dark-content', bgColor: white }}>
                 <Header title={data?.situation == 1 ? 'Novo Orçamento' : 'Visualizar Orçamento' } />
                 <View
                     data={data}

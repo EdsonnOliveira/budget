@@ -3,15 +3,16 @@ import React, { useEffect, useState } from "react";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
+import { white } from "../../../atomic/constants/colors";
 import Main from "../../../atomic/atoms/main";
 import Header from "../../../atomic/molecules/header";
 import TabBottomBar from "../../../atomic/organisms/tabBottomBar";
 import { StackProps } from "../../../routes/models";
 import { NotificationProps } from "../../../atomic/atoms/notification/models";
 import DBProducts from '../../../services/sqlite/products'
+import BottomSheet from "../../../atomic/organisms/bottomSheet";
 
 import View from "./view";
-import BottomSheet from "../../../atomic/organisms/bottomSheet";
 
 const ProductsModify: React.FC = ({}) => {
     const navigation = useNavigation<NativeStackNavigationProp<StackProps>>()
@@ -73,7 +74,7 @@ const ProductsModify: React.FC = ({}) => {
     
     return (
         <>
-            <Main statusBar={{ barStyle: 'dark-content' }}>
+            <Main statusBar={{ barStyle: 'dark-content', bgColor: white }}>
                 <Header title='Alterar produto' />
                 <View
                     name={name}

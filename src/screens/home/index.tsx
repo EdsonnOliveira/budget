@@ -6,6 +6,7 @@ import { State as ValueTypes, Creators as ValueActions } from '../../services/re
 
 import { BudgetType, PaymentTypes } from '../../constants/types';
 import { currency } from '../../constants/formats';
+import { secondary } from '../../atomic/constants/colors';
 
 import Main from '../../atomic/atoms/main';
 import BoxValue from '../../atomic/molecules/boxValue';
@@ -98,7 +99,7 @@ const Home: React.FC<IndexProps> = ({
 
     return (
         <>
-            <Main statusBar={{ doNotShow: true, barStyle: 'light-content' }}>
+            <Main statusBar={{ doNotShow: true, barStyle: 'light-content', bgColor: secondary }}>
                 <BoxValue
                     type='big'
                     label='Hoje'

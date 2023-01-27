@@ -14,7 +14,7 @@ const Main: React.FC<IndexProps> = ({
         <>
             { !!!statusBar?.doNotShow && <SafeArea statusBar={{bgColor: statusBar?.bgColor}} /> }
             <Container noMargin={noMargin} bgColor={bgColor}>
-                <StatusBar barStyle={statusBar?.barStyle ?? 'default'} translucent />
+                <StatusBar barStyle={statusBar?.barStyle ?? 'default'} backgroundColor={statusBar?.bgColor} translucent />
                 { children }
             </Container>
         </>

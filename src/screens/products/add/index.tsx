@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Main from "../../../atomic/atoms/main";
 import { NotificationProps } from "../../../atomic/atoms/notification/models";
+import { white } from "../../../atomic/constants/colors";
 import Header from "../../../atomic/molecules/header";
 import BottomSheet from "../../../atomic/organisms/bottomSheet";
 import TabBottomBar from "../../../atomic/organisms/tabBottomBar";
@@ -56,7 +57,7 @@ const ProductsAdd: React.FC = ({}) => {
 
     return (
         <>
-            <Main statusBar={{ barStyle: 'dark-content' }}>
+            <Main statusBar={{ barStyle: 'dark-content', bgColor: white }}>
                 <Header title='Adicionar produto' />
                 <View
                     name={name}

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
+import { white } from "../../atomic/constants/colors";
 import { ItemType } from "../../constants/types";
 import { StackProps } from "../../routes/models";
 
@@ -44,7 +45,7 @@ const Products: React.FC = ({}) => {
 
     return (
         <>
-            <Main statusBar={{ barStyle: 'dark-content' }}>
+            <Main statusBar={{ barStyle: 'dark-content', bgColor: white }}>
                 <Header title='Produtos' noBackButton />
                 <View
                     navigation={navigation}
