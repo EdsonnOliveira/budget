@@ -13,14 +13,16 @@ import Text from "../../atomic/atoms/text";
 import { ViewProps } from "./models";
 
 const View: React.FC<ViewProps> = ({
-    history,
     navigation,
+    history,
+    soldWeek,
+    soldMonth
 }) => {
     return (
         <Container>
             <BoxColumn mt='-85px'>
-                <BoxMiddle icon={Money} title='Semana' value='R$ 4.270,15' mr='10px' />
-                <BoxMiddle icon={Hand} title='Mês' value='R$ 13.021,99' ml='10px' />
+                <BoxMiddle icon={Money} title='Semana' value={`R$ ${soldWeek}`} mr='10px' />
+                <BoxMiddle icon={Hand} title='Mês' value={`R$ ${soldMonth}`} ml='10px' />
             </BoxColumn>
             <Text text='Histórico' type='H2' mt='25px' mb='10px' />
             <FlatList

@@ -3,6 +3,8 @@ import { BudgetType } from "../../constants/types";
 import { StackProps } from "../../routes/models";
 
 export interface ViewProps {
-    history: BudgetType[] | null;
     navigation: NativeStackNavigationProp<StackProps>;
+    history: BudgetType[] | null;
+    soldWeek: string;
+    soldMonth: string;
 }
