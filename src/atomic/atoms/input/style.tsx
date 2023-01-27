@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { TextInputMask as InputMask } from "react-native-masked-text";
 
-import { white, gray, secondary } from "../../constants/colors";
+import { white, gray, secondary, black } from "../../constants/colors";
 import { MarginsStyledProps } from "../../constants/spacing";
 import { IndexStyledProps } from "./models";
 import { borderRadius } from "../../constants/button";
@@ -28,6 +28,7 @@ export const TextInput = styled.TextInput.attrs({
     placeholderTextColor: gray
 })`
     font-family: 'LexendDeca-Regular';
+    color: ${black};
     flex: 1;
     text-align: ${( props: IndexStyledProps ) => ( props.textAlign ?? 'left' )};
     font-size: 21px;
@@ -37,6 +38,7 @@ export const TextInputMask = styled(InputMask).attrs({
     placeholderTextColor: gray
 })`
     font-family: 'LexendDeca-Regular';
+    color: ${black};
     flex: 1;
     text-align: ${( props: IndexStyledProps ) => ( props.textAlign ?? 'left' )};
     font-size: 21px;
