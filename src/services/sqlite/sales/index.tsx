@@ -188,7 +188,6 @@ const update = (obj: Models) => {
                     UPDATE Sales
                     SET IDPayment = ?, Descount = ?, SubTotal = ?, Total = ?, Situation = ?
                     WHERE ID = ?
-                    LIMIT 1
                 `,
                 [obj.idPayment, obj.descount, obj.subTotal, obj.total, obj.situation, obj.id],
                 (_: any, { rowsAffected, insertId }: any) => {
