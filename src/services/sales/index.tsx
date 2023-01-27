@@ -128,6 +128,37 @@ const findOne = (obj: Models) => {
     })
 }
 
+const findValues = (obj: Models) => {
+    return new Promise<Models[]>((resolve, reject) => {
+        db.transaction((tx: Transaction) => {
+            tx.executeSql(
+                `
+                    SELECT
+                        Total
+                    FROM
+                        Sales
+                    WHERE
+                        Date = ?
+                `,
+                [obj.date],
+                (tx: Transaction, result: ResultSet) => {
+                    if (result.rows.length > 0) {
+                        var array: Models[] = []
+                        for (let i = 0; i < result.rows.length; i++) {
+                            let json: Models = {
+                                total: result.rows.item(i).Total != null ? String(result.rows.item(i).Total).replace(',', '.') : '0.00',
+                            }
+                            array.push(json)
+                        }
+
+                        resolve(array)
+                    } else reject(result)
+                }
+            )
+        })
+    })
+}
+
 const insert = (obj: Models) => {
     return new Promise<string>((resolve, reject) => {
         db.transaction((tx: Transaction) => {
@@ -190,6 +221,7 @@ export default {
     listAll,
     findOpened,
     findOne,
+    findValues,
     insert,
     update,
     del
