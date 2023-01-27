@@ -90,8 +90,8 @@ const Scanner: React.FC = ({}) => {
             DBSales
             .insert({date: currentDate, time: currentTime})
             .then((data: string) => {
+                setIdSale(Number(data))
                 insertItem(data)
-                console.log(`Inserted: ${data}`)
             })
         })
 

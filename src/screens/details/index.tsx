@@ -102,9 +102,7 @@ const Details: React.FC = ({}) => {
 
             setProducts(items)
         })
-        .catch(() => {
-            setProducts(null)
-        })
+        .catch(() => setProducts(null))
 
         DBSalesItems
         .findValues({idSale: String(route.idSale)})
