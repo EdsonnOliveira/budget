@@ -1,6 +1,6 @@
 import React from "react";
 
-import { white } from "../../../atomic/constants/colors";
+import { secondary, white } from "../../../atomic/constants/colors";
 import Button from "../../../atomic/atoms/button";
 import Text from "../../../atomic/atoms/text";
 
@@ -15,7 +15,7 @@ const Finished: React.FC = ({}) => {
     const navigation = useNavigation<NativeStackNavigationProp<StackProps>>()
 
     return (
-        <Main>
+        <Main statusBar={{ bgColor: secondary }}>
             <StatusBar barStyle='light-content' />
             <Box />
             <Box>
