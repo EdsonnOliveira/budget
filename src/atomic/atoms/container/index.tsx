@@ -7,7 +7,7 @@ import { IndexStyledProps } from "./models";
 const Container = styled.View`
     background-color: ${( props: IndexStyledProps ) => ( props.bgColor ?? 'transparent' )};
     flex: 1;
-    height: ${Platform.OS === 'android' ? `${screenHeight-90}px` : 'auto'};
+    height: ${( props: IndexStyledProps ) => ( props.heightContent && Platform.OS === 'android' ? `${screenHeight-90}px` : 'auto' )};
     padding: 20px;
     padding-bottom: ${( props: IndexStyledProps ) => ( props.noTab ? 'null' : '40px' )};
     flex-direction: ${( props: AlignmentsStyledProps ) => ( props.flexDirection ?? 'column' )};

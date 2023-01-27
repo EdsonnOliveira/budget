@@ -38,7 +38,7 @@ const View: React.FC<ViewProps> = ({
     addProductScanning
 }) => {
     return (
-        <Container alignItems='center' justifyContent='space-between'>
+        <Container alignItems='center' justifyContent='space-between' heightContent>
             {
                 mode == 'camera'
                 ? (
