@@ -31,9 +31,9 @@ const listAll = () => {
                     FROM
                         Sales
                     WHERE
-                        Situation <> ?
+                        Situation = ?
                 `,
-                ['1'],
+                ['2'],
                 (tx: Transaction, result: ResultSet) => {
                     if (result.rows.length > 0) {
                         var array: Models[] = []
@@ -134,18 +134,21 @@ const findValues = (obj: Models) => {
             tx.executeSql(
                 `
                     SELECT
+                        ID,
                         Total
                     FROM
                         Sales
                     WHERE
-                        Date = ?
+                        Date BETWEEN ? AND ?
+                        AND Situation = ?
                 `,
-                [obj.date],
+                [obj.date, obj.date2 || obj.date, '2'],
                 (tx: Transaction, result: ResultSet) => {
                     if (result.rows.length > 0) {
                         var array: Models[] = []
                         for (let i = 0; i < result.rows.length; i++) {
                             let json: Models = {
+                                id: result.rows.item(i).ID,
                                 total: result.rows.item(i).Total != null ? String(result.rows.item(i).Total).replace(',', '.') : '0.00',
                             }
                             array.push(json)

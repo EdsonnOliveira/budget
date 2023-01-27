@@ -11,13 +11,11 @@ import Main from '../../atomic/atoms/main';
 import BoxValue from '../../atomic/molecules/boxValue';
 import TabBottomBar from '../../atomic/organisms/tabBottomBar';
 
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackProps } from '../../routes/models';
 
 import DBSales, { Models as ModelsSales } from '../../services/sqlite/sales'
-
-import Button from '../../atomic/atoms/button';
 
 import { IndexProps } from './models';
 import View from './view'
@@ -33,26 +31,45 @@ const Home: React.FC<IndexProps> = ({
     const [soldMonth, setSoldMonth] = useState<string>('0,00')
     const [items, setItems] = useState<BudgetType[] | null>(null)
 
-    useFocusEffect(() => {
-        listAll();
-    })
-
     useEffect(() => {
         listValues()
+        listAll();
     }, [valueSoldToday])
 
     const listValues = () => {
         let date = new Date();
         let currentDate = `${date.getDate()}/${String(date.getMonth()+1).padStart(2, '0')}/${date.getFullYear()}`
 
-        let today = 0;
-
         DBSales
         .findValues({date: currentDate})
         .then((data: ModelsSales[]) => {
-            data.map((item) => today += Number(item.total))
-            setSoldToday(String(today))
-            setValueSoldToday(String(today))
+            let value = 0;
+
+            data.map((item) => value += Number(item.total))
+            setSoldToday(String(value))
+            setValueSoldToday(String(value))
+        })
+
+        let firstDayOfMonth = `01/${String(date.getMonth()+1).padStart(2, '0')}/${date.getFullYear()}`
+        DBSales
+        .findValues({date: firstDayOfMonth, date2: currentDate})
+        .then((data: ModelsSales[]) => {
+            let value = 0;
+
+            data.map((item) => value += Number(item.total))
+            setSoldMonth(currency(Number(value) || 0, 2, 3, '.', ','))
+        })
+
+        let firstDayOfWeek: any = new Date(date.setDate(date.getDate() - (date.getDay() || 7)))
+        firstDayOfWeek = String(firstDayOfWeek).substring(8, 10)
+        firstDayOfWeek = `${firstDayOfWeek}/${String(date.getMonth()+1).padStart(2, '0')}/${date.getFullYear()}`
+        DBSales
+        .findValues({date: firstDayOfWeek, date2: currentDate})
+        .then((data: ModelsSales[]) => {
+            let value = 0;
+
+            data.map((item) => value += Number(item.total))
+            setSoldWeek(currency(Number(value) || 0, 2, 3, '.', ','))
         })
     }
 

@@ -5,6 +5,7 @@ export default interface Sales {
     subTotal?: string;
     total?: string;
     date?: string;
+    date2?: string;
     time?: string;
     situation?: number;
 }
