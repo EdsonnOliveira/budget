@@ -150,7 +150,10 @@ const Details: React.FC<IndexProps> = ({
         setModalFinish(true)
     }
 
+    const [textFinish, setTextFinish] = useState<string>('Finalizar')
+
     const finish = () => {
+        setTextFinish('Aguarde...')
         let idPayment;
         switch (paymentInfo.value) {
             case PaymentTypes.credit:
@@ -165,7 +168,7 @@ const Details: React.FC<IndexProps> = ({
 
         DBSales
         .update({
-            idPayment,
+            idPayment: Number(idPayment),
             descount: String(descountInfo.value),
             subTotal: String(subtotalInfo.value),
             total: String(totalInfo.value),
@@ -184,10 +187,15 @@ const Details: React.FC<IndexProps> = ({
                 data.map((item) => today += Number(item.total))
                 setValueSoldToday(String(today))
             })
+            .catch(() => setTextFinish('Erro!'))
 
-            setModalFinish(false)
-            navigation.navigate('DetailsFinished');
+            setTextFinish('Finalizado!')
+            setTimeout(() => {
+                setModalFinish(false)
+                navigation.navigate('DetailsFinished');
+            }, 1500);
         })
+        .catch(() => setTextFinish('Algo de errado aconteceu!'))
     }
 
     return (
@@ -230,7 +238,7 @@ const Details: React.FC<IndexProps> = ({
                 setState={setModalFinish}
                 buttonConfirm={{
                     type: 'gradientLarge',
-                    text: 'Finalizar',
+                    text: textFinish,
                     onPress: finish
                 }}
             />
