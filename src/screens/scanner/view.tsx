@@ -31,11 +31,12 @@ const View: React.FC<ViewProps> = ({
     setFlashMode,
     scanned,
     scannedError,
+    setScannedError,
     scannedProduct,
     barCode,
     setBarCode,
     productAdded,
-    addProductScanning
+    addProductScanning,
 }) => {
     return (
         <Container alignItems='center' justifyContent='space-between' heightContent>
@@ -49,7 +50,9 @@ const View: React.FC<ViewProps> = ({
                         setFlashMode={setFlashMode}
                         scanned={scanned}
                         scannedError={scannedError}
+                        setScannedError={setScannedError}
                         scannedProduct={scannedProduct}
+                        barCode={barCode}
                         setBarCode={setBarCode}
                         productAdded={productAdded}
                         addProductScanning={addProductScanning}
@@ -63,6 +66,7 @@ const View: React.FC<ViewProps> = ({
                         navigation={navigation}
                         scanned={scanned}
                         scannedError={scannedError}
+                        setScannedError={setScannedError}
                         scannedProduct={scannedProduct}
                         barCode={barCode}
                         setBarCode={setBarCode}
@@ -84,7 +88,9 @@ const ModeCamera: React.FC<CameraProps> = ({
     setFlashMode,
     scanned,
     scannedError,
+    setScannedError,
     scannedProduct,
+    barCode,
     setBarCode,
     productAdded,
     addProductScanning,
@@ -105,6 +111,7 @@ const ModeCamera: React.FC<CameraProps> = ({
                 edgeRadius={7}
             />
             <BoxCommon alignItems='center'>
+                <BoxCommon flexDirection='row'>
                 <Button
                     type='ghostSolidSmall'
                     text='Manual'
@@ -112,7 +119,17 @@ const ModeCamera: React.FC<CameraProps> = ({
                     sizeIcon={{width: '20px', height: '20px'}}
                     onPress={() => setMode('manual')}
                     mb='30px'
+                    mr='15px'
                 />
+                <Button
+                    type='ghostSolidSmall'
+                    text='Flash'
+                    icon={Lightning}
+                    sizeIcon={{width: '20px', height: '20px'}}
+                    onPress={() => setFlashMode(flashMode === 'torch' ? 'off' : 'torch')}
+                    mb='30px'
+                />
+                </BoxCommon>
                 {
                     productAdded && (
                         <Notification
@@ -135,20 +152,20 @@ const ModeCamera: React.FC<CameraProps> = ({
             {
                 scannedError && (
                     <BoxCard
-                        title='Produto não encontrado'
+                        title={`Produto não encontrado\nDeseja cadastrar?`}
                         mt='310px'
+                        onPress={() => {
+                            setScannedError(false)
+                            navigation.navigate('ProductsAdd', { barCode })
+                        }}
                     />
                 )
             }
             <BoxColumn justifyContent='space-between' alignItems='center'>
-                <Button
-                    type='hexagonGhostSolidMedium'
-                    text={Lightning}
-                    onPress={() => setFlashMode(flashMode === 'torch' ? 'off' : 'torch')}
-                />
+                <Button text='' onPress={() => null} type='ghostSmall' ml='50px' />
                 <Button
                     type='hexagonGradientLarge'
-                    text={Scan}
+                    text={scanned && scannedError == false ? 'Incluir' : 'Escanear'}
                     sizeIcon={{width: 130, height: 40, top: 37}}
                     onPress={addProductScanning}
                     ml='5px'
@@ -217,41 +234,43 @@ const ModeManual: React.FC<ManualProps> = ({
                     )
                 }
             </BoxCommon>
-            <Input
-                width='80%'
-                placeholder='Código de Barras'
-                value={barCode}
-                onChangeText={setBarCode}
-                keyboardType='number-pad'
-                mb='15px'
-            />
-            {
-                scanned && scannedError == false && (
-                    <BoxCard
-                        title={String(scannedProduct?.name)}
-                        subtitle={`R$ ${scannedProduct?.price}`}
-                        tag={{type: 'rectangle', value: String(scannedProduct?.sequence)}}
-                        mt='310px'
-                    />
-                )
-            }
-            {
-                scannedError && (
-                    <BoxCard
-                        title='Produto não encontrado'
-                        mt='310px'
-                    />
-                )
-            }
+            <BoxCommon>
+                <Input
+                    width='80%'
+                    placeholder='Digite o código'
+                    value={barCode}
+                    onChangeText={setBarCode}
+                    keyboardType='number-pad'
+                    autoFocus
+                    mb='15px'
+                />
+                {
+                    scanned && scannedError == false && (
+                        <BoxCard
+                            title={String(scannedProduct?.name)}
+                            subtitle={`R$ ${scannedProduct?.price}`}
+                            tag={{type: 'rectangle', value: String(scannedProduct?.sequence)}}
+                            mt='310px'
+                            />
+                    )
+                }
+                {
+                    scannedError && (
+                        <BoxCard
+                            title={`Produto não encontrado\nDeseja cadastrar?`}
+                            mt='310px'
+                            onPress={() => navigation.navigate('ProductsAdd', { barCode })}
+                        />
+                    )
+                }
+            </BoxCommon>
             <BoxColumn justifyContent='space-between' alignItems='center'>
-                <BoxCommon alignItems='center' flex>
-                    <Button
-                        type='hexagonGradientLarge'
-                        text='Ok'
-                        onPress={addProductScanning}
-                        ml='90px'
-                    />
-                </BoxCommon>
+                <Button
+                    type='hexagonGradientLarge'
+                    text={scanned && scannedError == false ? 'Incluir' : 'Digite'}
+                    onPress={addProductScanning}
+                    ml='90px'
+                />
                 {
                     String(quantity) != '0' ? (
                         <Button

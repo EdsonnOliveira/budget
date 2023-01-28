@@ -4,7 +4,9 @@ import { borderRadius } from "../../../constants/button";
 import { white } from "../../../constants/colors";
 import { MarginsStyledProps } from "../../../constants/spacing";
 
-export const Main = styled.View`
+export const Main = styled.TouchableOpacity.attrs({
+    activeOpacity: 1
+})`
     width: 270px;
     height: 66px;
     border-radius: ${borderRadius};

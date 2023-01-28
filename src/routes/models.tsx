@@ -9,7 +9,9 @@ export type StackProps = {
     };
     DetailsFinished: undefined;
     Products: undefined;
-    ProductsAdd: undefined;
+    ProductsAdd: {
+        barCode: string
+    };
     ProductsModify: {
         data: ItemType
     };

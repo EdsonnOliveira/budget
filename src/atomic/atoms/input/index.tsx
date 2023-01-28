@@ -10,6 +10,7 @@ const Input: React.FC<IndexProps> = ({
     placeholder,
     keyboardType = 'default',
     actionButton,
+    autoFocus,
     mt,
     ml,
     mr,
@@ -32,6 +33,7 @@ const Input: React.FC<IndexProps> = ({
                         value={value}
                         onChangeText={onChangeText}
                         placeholder={placeholder}
+                        autoFocus={autoFocus}
                     />
                 ) : (
                     <TextInput
@@ -39,6 +41,7 @@ const Input: React.FC<IndexProps> = ({
                         onChangeText={onChangeText}
                         placeholder={placeholder}
                         keyboardType={keyboardType}
+                        autoFocus={autoFocus}
                     />
                 )
             }

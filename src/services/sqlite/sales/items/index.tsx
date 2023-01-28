@@ -32,6 +32,9 @@ const listAll = (obj: Models) => {
                         SalesItems
                     WHERE
                         IDSale = ?
+                    ORDER BY
+                        ID
+                    DESC
                 `,
                 [obj.idSale],
                 (tx: Transaction, result: ResultSet) => {

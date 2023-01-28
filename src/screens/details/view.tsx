@@ -24,6 +24,18 @@ const View: React.FC<ViewProps> = ({
     return (
         <Container>
             <BoxValue type='medium' value={total} />
+            <Text text='Itens' type='H2' mt='25px' mb='10px' />
+            <ListProduct
+                data={products}
+                onLongPress={(item, index) => {
+                    if (data?.situation != 1)
+                    return
+                    
+                    setModalItem(true)
+                    setItemSelected(Number(item.id))
+                    setItemSelectedSeq(Number(item.sequence))
+                }}
+            />
             <Text text={data?.situation == 1 ? 'Pagar com' : 'Pagamento selecionado'} type='H2' mt='25px' mb='10px' />
             <Button
                 type='bottomSheet'
@@ -33,18 +45,6 @@ const View: React.FC<ViewProps> = ({
                 onPress={() => setModalPayment(true)}
                 disabled={data?.situation != 1 ? true : false }
                 selected={paymentSelected.id != -1}
-            />
-            <Text text='Itens' type='H2' mt='25px' mb='10px' />
-            <ListProduct
-                data={products}
-                onLongPress={(item, index) => {
-                    if (data?.situation != 1)
-                        return
-                        
-                    setModalItem(true)
-                    setItemSelected(Number(item.id))
-                    setItemSelectedSeq(Number(item.sequence))
-                }}
             />
             {
                 data?.situation == 1 && (

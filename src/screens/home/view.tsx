@@ -32,7 +32,7 @@ const View: React.FC<ViewProps> = ({
                     ({item, index}) => (
                         <BoxMiddle
                             icon={item.sequence.toString()}
-                            title={item.payment}
+                            title={String(item.time)}
                             value={`R$ ${item.value}`}
                             ml={index % 2 == 0 ? 0 : '10px'}
                             mr={index % 2 == 0 ? '10px' : 0}

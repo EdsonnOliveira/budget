@@ -6,7 +6,8 @@ export enum PaymentTypes {
 
 export interface BudgetType {
     sequence: string | number;
-    payment: PaymentTypes
+    payment?: PaymentTypes
+    time?: string;
     value: string;
 }
 

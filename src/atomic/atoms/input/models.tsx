@@ -1,3 +1,4 @@
+import { Ref } from "react";
 import { KeyboardType } from "react-native";
 import { StyledProps } from "styled-components";
 import { Margins } from "../../constants/spacing";
@@ -11,6 +12,7 @@ export interface IndexProps extends Margins {
     textAlign?: TextAlign;
     keyboardType?: KeyboardType | 'money'
     actionButton?: Button | undefined;
+    autoFocus?: boolean;
 }
 
 type Button = {

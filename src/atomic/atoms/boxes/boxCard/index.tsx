@@ -9,13 +9,14 @@ const BoxCard: React.FC<IndexProps> = ({
     title,
     subtitle,
     tag,
+    onPress,
     mt,
     ml,
     mr,
     mb
 }) => {
     return (
-        <Main mt={mt} ml={ml} mr={mr} mb={mb}>
+        <Main onPress={onPress} mt={mt} ml={ml} mr={mr} mb={mb}>
             {
                 tag && subtitle ? (
                     <>

@@ -83,11 +83,7 @@ const Home: React.FC<IndexProps> = ({
             data.map((item) => {
                 let json = {
                     sequence: String(item.id),
-                    payment: item.idPayment == 1
-                                ? PaymentTypes.money
-                                : item.idPayment == 2
-                                ? PaymentTypes.credit
-                                : PaymentTypes.debit,
+                    time: String(item.time),
                     value: String(item?.total),
                 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Vibration } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
@@ -101,6 +101,7 @@ const Scanner: React.FC = ({}) => {
         setScanned(false)
         setProductAdded(true)
         setQuantity(quantity+1)
+        setBarCode('')
     }
 
     const insertItem = (idSale: string) => {
@@ -139,6 +140,7 @@ const Scanner: React.FC = ({}) => {
                 setFlashMode={setFlashMode}
                 scanned={scanned}
                 scannedError={scannedError}
+                setScannedError={setScannedError}
                 scannedProduct={scannedProduct}
                 barCode={barCode}
                 setBarCode={setBarCode}

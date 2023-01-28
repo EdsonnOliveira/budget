@@ -6,6 +6,7 @@ export interface IndexProps extends Margins {
     title: string;
     subtitle?: string;
     tag?: TagProps
+    onPress?: () => void
 }
 
 export type IndexStyledProps = StyledProps<IndexProps>

@@ -1,4 +1,5 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Ref } from "react";
 import { FlashMode } from "react-native-camera";
 import { StackProps } from "../../routes/models";
 
@@ -12,8 +13,10 @@ export interface CameraProps {
     flashMode: keyof FlashMode
     setFlashMode: (mode: keyof FlashMode) => void;
     scanned: boolean;
+    setScannedError: (state: boolean) => void
     scannedError: boolean;
     scannedProduct: ScannedProductProps;
+    barCode: string;
     setBarCode: (bar: string) => void;
     productAdded: boolean;
     addProductScanning: () => void
@@ -26,6 +29,7 @@ export interface ManualProps {
     setMode: (mode: ModeScanner) => void;
     navigation: NativeStackNavigationProp<StackProps>;
     scanned: boolean;
+    setScannedError: (state: boolean) => void
     scannedError: boolean;
     scannedProduct: ScannedProductProps;
     barCode: string;
