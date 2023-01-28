@@ -73,9 +73,12 @@ const Scanner: React.FC = ({}) => {
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            setProductAdded(false)
-        }, 5000);
+        if (productAdded) {
+            setTimeout(() => {
+                setProductAdded(false)
+                setMode('camera')
+            }, 5000);
+        }
     }, [productAdded])
 
     const addProductScanning = () => {

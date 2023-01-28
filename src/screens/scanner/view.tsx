@@ -140,7 +140,7 @@ const ModeCamera: React.FC<CameraProps> = ({
                 }
             </BoxCommon>
             {
-                scanned && scannedError == false && (
+                scanned && !scannedError && (
                     <BoxCard
                         title={String(scannedProduct?.name)}
                         subtitle={`R$ ${scannedProduct?.price}`}
@@ -165,7 +165,7 @@ const ModeCamera: React.FC<CameraProps> = ({
                 <Button text='' onPress={() => null} type='ghostSmall' ml='50px' />
                 <Button
                     type='hexagonGradientLarge'
-                    text={scanned && scannedError == false ? 'Incluir' : 'Escanear'}
+                    text={scanned && !scannedError ? 'Incluir' : 'Escanear'}
                     sizeIcon={{width: 130, height: 40, top: 37}}
                     onPress={addProductScanning}
                     ml='5px'
@@ -245,7 +245,7 @@ const ModeManual: React.FC<ManualProps> = ({
                     mb='15px'
                 />
                 {
-                    scanned && scannedError == false && (
+                    scanned && !scannedError && (
                         <BoxCard
                             title={String(scannedProduct?.name)}
                             subtitle={`R$ ${scannedProduct?.price}`}
@@ -267,7 +267,7 @@ const ModeManual: React.FC<ManualProps> = ({
             <BoxColumn justifyContent='space-between' alignItems='center'>
                 <Button
                     type='hexagonGradientLarge'
-                    text={scanned && scannedError == false ? 'Incluir' : 'Digite'}
+                    text={scanned && !scannedError ? 'Incluir' : 'Digite'}
                     onPress={addProductScanning}
                     ml='90px'
                 />
