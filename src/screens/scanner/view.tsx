@@ -1,8 +1,9 @@
 import React from "react";
 
 import { RNCamera } from "react-native-camera";
-import { screenHeight, screenWidth } from "../../atomic/constants/dimension";
 import BarcodeMask from "react-native-barcode-mask";
+
+import { screenHeight, screenWidth } from "../../atomic/constants/dimension";
 
 import Button from "../../atomic/atoms/button";
 import Container from "../../atomic/atoms/container";
@@ -14,7 +15,7 @@ import BoxCommon from "../../atomic/atoms/boxes/boxCommon";
 import Camera from '../../assets/icons/camera.png'
 import Manual from '../../assets/icons/keyboard.png'
 import Lightning from '../../assets/icons/lightning.png'
-import Scan from '../../assets/icons/scanner.png'
+import Cart from '../../assets/icons/Cart.png'
 import Arrow from '../../assets/icons/arrow-right.png'
 
 import { CameraProps, ManualProps, ViewProps } from './models';
@@ -165,8 +166,8 @@ const ModeCamera: React.FC<CameraProps> = ({
                 <Button text='' onPress={() => null} type='ghostSmall' ml='50px' />
                 <Button
                     type='hexagonGradientLarge'
-                    text={scanned && !scannedError ? 'Incluir' : 'Escanear'}
-                    sizeIcon={{width: 130, height: 40, top: 37}}
+                    text={scanned && !scannedError ? Cart : 'Escanear'}
+                    sizeIcon={{ width: 50, height: 50, top: 33, left: 40 }}
                     onPress={addProductScanning}
                     ml='5px'
                 />
@@ -250,15 +251,13 @@ const ModeManual: React.FC<ManualProps> = ({
                             title={String(scannedProduct?.name)}
                             subtitle={`R$ ${scannedProduct?.price}`}
                             tag={{type: 'rectangle', value: String(scannedProduct?.sequence)}}
-                            mt='310px'
-                            />
+                        />
                     )
                 }
                 {
                     scannedError && (
                         <BoxCard
                             title={`Produto não encontrado\nDeseja cadastrar?`}
-                            mt='310px'
                             onPress={() => navigation.navigate('ProductsAdd', { barCode })}
                         />
                     )
@@ -267,7 +266,8 @@ const ModeManual: React.FC<ManualProps> = ({
             <BoxColumn justifyContent='space-between' alignItems='center'>
                 <Button
                     type='hexagonGradientLarge'
-                    text={scanned && !scannedError ? 'Incluir' : 'Digite'}
+                    text={scanned && !scannedError ? Cart : 'Digite'}
+                    sizeIcon={{ width: 50, height: 50, top: 33, left: 40 }}
                     onPress={addProductScanning}
                     ml='90px'
                 />
