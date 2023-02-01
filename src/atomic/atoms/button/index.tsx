@@ -1,5 +1,7 @@
 import React from "react";
+
 import Text from "../text";
+import { black, white } from "../../constants/colors";
 
 import {
     GhostSmall,
@@ -30,7 +32,6 @@ import HexagonTertiaryMediumImage from '../../../assets/vectors/hexagonTertiaryM
 import HexagonGhostSolidMediumImage from '../../../assets/vectors/hexagonGhostSolidMedium.png'
 
 import IndexProps from "./models";
-import { black, white } from "../../constants/colors";
 import Tag from "../tag";
 
 const Button: React.FC<IndexProps> = ({
@@ -125,6 +126,7 @@ const Button: React.FC<IndexProps> = ({
                                     width: sizeIcon?.width ? sizeIcon?.width : '100%',
                                     height: sizeIcon?.height ? sizeIcon?.height : null,
                                     top: sizeIcon?.top ? sizeIcon?.top : 28,
+                                    left: sizeIcon?.left ? sizeIcon?.left : 0,
                                     position: 'absolute',
                                     zIndex: 2,
                                     resizeMode: 'contain'

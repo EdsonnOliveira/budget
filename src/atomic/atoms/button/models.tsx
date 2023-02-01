@@ -40,4 +40,5 @@ type Dimension = {
     width: string | number;
     height: string | number;
     top?: string | number;
+    left?: string | number;
 }
