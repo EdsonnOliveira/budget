@@ -20,3 +20,12 @@ export interface ItemType {
 }
 
 export type ModalType = (state: boolean) => void;
+
+export type IconType = {
+    source: string;
+    width: string | number;
+    height: string | number;
+    top?: string | number;
+    left?: string | number;
+    position?: string
+}

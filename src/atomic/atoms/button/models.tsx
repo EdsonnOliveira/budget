@@ -1,5 +1,6 @@
 import { Image } from "react-native";
 import { StyledProps } from "styled-components";
+import { IconType } from "../../../constants/types";
 import { Margins } from "../../constants/spacing";
 
 export default interface IndexProps extends Margins {
@@ -10,7 +11,7 @@ export default interface IndexProps extends Margins {
     marker?: boolean;
     tag?: string;
     flex?: boolean;
-    sizeIcon?: Dimension;
+    sizeIcon?: IconType;
     disabled?: boolean
     selected?: boolean
 }
@@ -35,10 +36,3 @@ export type IndexStyledProps = StyledProps<{
     selected?: boolean;
     disabled?: boolean
 }>
-
-type Dimension = {
-    width: string | number;
-    height: string | number;
-    top?: string | number;
-    left?: string | number;
-}

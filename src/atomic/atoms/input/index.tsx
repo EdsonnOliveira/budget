@@ -1,7 +1,7 @@
 import React from "react";
 
 import { IndexProps } from "./models";
-import { Button, Main, TextInput, TextInputMask } from "./style";
+import { Button, Main, TextInput, TextInputMask, Image } from "./style";
 
 const Input: React.FC<IndexProps> = ({
     width,
@@ -11,6 +11,7 @@ const Input: React.FC<IndexProps> = ({
     keyboardType = 'default',
     actionButton,
     autoFocus,
+    icon,
     mt,
     ml,
     mr,
@@ -50,7 +51,18 @@ const Input: React.FC<IndexProps> = ({
                     <Button
                         onPress={actionButton.onPress}
                     >
-
+                        <Image
+                            source={icon?.source}
+                            style={{
+                                width: icon?.width ?? '100%',
+                                height: icon?.height ?? null,
+                                top: icon?.top ?? 0,
+                                left: icon?.left ?? 0,
+                                position: icon?.position ?? 'relative',
+                                zIndex: 2,
+                                resizeMode: 'contain'
+                            }}
+                        />
                     </Button>
                 )
             }

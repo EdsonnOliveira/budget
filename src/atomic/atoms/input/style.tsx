@@ -49,4 +49,11 @@ export const Button = styled.TouchableOpacity`
     background-color: ${secondary};
     border-radius: ${borderRadius};
     margin-right: -7px;
+    justify-content: center;
+    align-items: center;
+`
+
+export const Image = styled.Image`
+    width: ${( props: IndexStyledProps ) => ( props.sizeIcon?.width ?? '30px' )};
+    height: ${( props: IndexStyledProps ) => ( props.sizeIcon?.height ?? '30px' )};
 `
