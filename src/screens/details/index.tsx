@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { State as ValueTypes, Creators as ValueActions } from '../../services/redux/ducks/value';
+import { Creators as ValueActions } from '../../services/redux/ducks/value';
 
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -49,8 +49,7 @@ const Details: React.FC<IndexProps> = ({
 
     const [data, setData] = useState<ModelsSales | null>()
 
-    const [modalPayment, setModalPayment] = useState<boolean>(false)
-    const [paymentSelected, setPaymentSelected] = useState<ItemsRadio>({id: -1, description: ''})
+    const [paymentSelected, setPaymentSelected] = useState<number>(-1)
 
     const [modalItem, setModalItem] = useState<boolean>(false);
     const [itemSelectedSeq, setItemSelectedSeq] = useState<number>(-1)
@@ -82,14 +81,7 @@ const Details: React.FC<IndexProps> = ({
             if (data.situation == 1)
                 return
             
-            setPaymentSelected({
-                id: Number(data.idPayment),
-                description: data.idPayment == 1
-                                ? 'Dinheiro'
-                                : data.idPayment == 2
-                                ? 'Crédito'
-                                : 'Débito'
-            })
+            setPaymentSelected(Number(data.idPayment)-1)
         })
 
         let items: ItemType[] = []
@@ -117,12 +109,20 @@ const Details: React.FC<IndexProps> = ({
         .findValues({idSale: String(route.idSale)})
         .then((data: ModelsSalesItems) => {
             let total = currency(Number(data.priceTotal), 2, 3, '.', ',')
+            setSubtotalInfo(data => ({
+                ...data,
+                value: total
+            }))
             setTotalInfo(data => ({
                 ...data,
                 value: total
             }))
         })
         .catch(() => {
+            setSubtotalInfo(data => ({
+                ...data,
+                value: '0,00'
+            }))
             setTotalInfo(data => ({
                 ...data,
                 value: '0,00'
@@ -132,8 +132,9 @@ const Details: React.FC<IndexProps> = ({
     }
 
     useEffect(() => {
-        setPaymentInfo({title: 'Pagamento', value: paymentSelected.description})
-    }, [paymentSelected.description])
+        if (paymentSelected != -1)
+        setPaymentInfo({title: 'Pagamento', value: Payments[paymentSelected].description})
+    }, [paymentSelected])
 
     const delItem = () => {
         DBSalesItems
@@ -206,32 +207,24 @@ const Details: React.FC<IndexProps> = ({
                     data={data}
                     total={totalInfo.value}
                     products={products}
-                    setModalPayment={setModalPayment}
+                    payments={Payments}
                     paymentSelected={paymentSelected}
+                    setPaymentSelected={setPaymentSelected}
                     setModalItem={setModalItem}
                     setItemSelected={setItemSelected}
                     setItemSelectedSeq={setItemSelectedSeq}
-                    disabledFinish={paymentSelected.id != -1 ? false : true}
+                    disabledFinish={paymentSelected != -1 ? false : true}
                     finishSale={finishSale}
                 />
             </Main>
             <TabBottomBar />
-            <BottomSheet
-                title='Forma de pagamento'
-                type='radio'
-                items={Payments}
-                selectedItem={paymentSelected.id}
-                setSelectedItem={setPaymentSelected}
-                visible={modalPayment}
-                setState={setModalPayment}
-            />
             <BottomSheet
                 title='Finalização'
                 type='list'
                 items={[
                     {...paymentInfo},
                     {...descountInfo},
-                    {...subtotalInfo},
+                    {...subtotalInfo, value: `R$ ${subtotalInfo.value}`},
                     {...totalInfo, value: `R$ ${totalInfo.value}`}
                 ]}
                 visible={modalFinish}

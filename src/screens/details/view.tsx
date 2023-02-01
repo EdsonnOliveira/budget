@@ -6,6 +6,7 @@ import Container from "../../atomic/atoms/container";
 import ListProduct from "../../atomic/molecules/listProduct";
 import Text from "../../atomic/atoms/text";
 import BoxValue from "../../atomic/molecules/boxValue";
+import ListRadio from "../../atomic/molecules/listRadio";
 
 import { ViewProps } from "./models";
 
@@ -13,8 +14,9 @@ const View: React.FC<ViewProps> = ({
     data,
     total,
     products,
-    setModalPayment,
+    payments,
     paymentSelected,
+    setPaymentSelected,
     setModalItem,
     setItemSelected,
     setItemSelectedSeq,
@@ -29,7 +31,7 @@ const View: React.FC<ViewProps> = ({
                 data={products}
                 onLongPress={(item, index) => {
                     if (data?.situation != 1)
-                    return
+                        return
                     
                     setModalItem(true)
                     setItemSelected(Number(item.id))
@@ -37,14 +39,10 @@ const View: React.FC<ViewProps> = ({
                 }}
             />
             <Text text={data?.situation == 1 ? 'Pagar com' : 'Pagamento selecionado'} type='H2' mt='25px' mb='10px' />
-            <Button
-                type='bottomSheet'
-                text={paymentSelected.id == -1
-                        ? `Selecionar a forma\nde pagamento`
-                        : paymentSelected.description}
-                onPress={() => setModalPayment(true)}
-                disabled={data?.situation != 1 ? true : false }
-                selected={paymentSelected.id != -1}
+            <ListRadio
+                items={payments}
+                itemSelected={paymentSelected}
+                setItemSelected={setPaymentSelected}
             />
             {
                 data?.situation == 1 && (

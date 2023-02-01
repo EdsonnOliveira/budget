@@ -10,8 +10,9 @@ export interface ViewProps {
     data: ModelsSales | null | undefined;
     total: string;
     products: ItemType[] | null;
-    setModalPayment: ModalType;
-    paymentSelected: ItemsRadio;
+    payments: ItemsRadio[];
+    paymentSelected: number;
+    setPaymentSelected: (id: number) => void;
     setModalItem: ModalType;
     setItemSelected: (item: number) => void;
     setItemSelectedSeq: (item: number) => void;
