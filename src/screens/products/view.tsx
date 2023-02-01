@@ -2,7 +2,7 @@ import React from "react";
 
 import Button from "../../atomic/atoms/button";
 import Container from "../../atomic/atoms/container";
-import ListProduct from "../../atomic/atoms/listProduct";
+import ListProduct from "../../atomic/molecules/listProduct";
 
 import { ViewProps } from "./models";
 

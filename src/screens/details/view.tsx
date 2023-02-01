@@ -3,7 +3,7 @@ import React from "react";
 import BoxCommon from "../../atomic/atoms/boxes/boxCommon";
 import Button from "../../atomic/atoms/button";
 import Container from "../../atomic/atoms/container";
-import ListProduct from "../../atomic/atoms/listProduct";
+import ListProduct from "../../atomic/molecules/listProduct";
 import Text from "../../atomic/atoms/text";
 import BoxValue from "../../atomic/molecules/boxValue";
 

@@ -1,8 +1,8 @@
 import React from "react";
 import { FlatList, Vibration } from "react-native";
 
-import BoxMiddle from "../boxes/boxMiddle";
-import { Separator } from "../boxes/separator";
+import BoxMiddle from "../../atoms/boxes/boxMiddle";
+import { Separator } from "../../atoms/boxes/separator";
 
 import { IndexProps } from "./models";
 
