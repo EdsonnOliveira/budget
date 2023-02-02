@@ -32,7 +32,7 @@ export type ButtonTypes = 'primaryLarge' | 'primaryMedium' | 'primarySmall' |
 
 export type IndexStyledProps = StyledProps<{
     flex?: boolean;
-    sizeIcon?: Dimension;
+    sizeIcon?: IconType;
     selected?: boolean;
     disabled?: boolean
 }>
