@@ -6,7 +6,7 @@ import { white } from "../../constants/colors";
 export const Main = styled.SafeAreaView`
     width: 100%;
     height: 70px;
-    margin-top: ${Platform.OS === 'android' ? '30px' : 'auto'};
+    margin-top: ${Platform.OS === 'android' ? '20px' : 'auto'};
     background-color: ${white};
     elevation: ${shadow.elevation};
     box-shadow: ${shadow.boxShadow};

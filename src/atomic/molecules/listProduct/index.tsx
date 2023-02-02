@@ -14,7 +14,8 @@ const ListProduct: React.FC<IndexProps> = ({
     return (
         <FlatList
             data={data}
-            style={{ width: '100%', paddingHorizontal: 5, paddingBottom: 7 }}
+            style={{ width: '100%' }}
+            contentContainerStyle={{ paddingBottom: 20, paddingHorizontal: 7, paddingTop: 10 }}
             renderItem={
                 ({item, index}) => (
                     <BoxMiddle
